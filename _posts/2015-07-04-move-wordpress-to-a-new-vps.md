@@ -25,7 +25,7 @@ tags:
   - vps
   - wordpress
 ---
-Sometimes a change of scenery is really good for you, sometimes it&#8217;s even true for your WordPress site. For example you want to move your website from a server located in Germany to one of your servers in the US for better connectivity for the American users. [I&#8217;m using DigitalOcean as my VPS provider](http://jejje.net/vps-self-hosted-at-digital-ocean/) and you have the option to take a snapshot and move the whole server, but in my case this was not what I wished to do, I wanted to move WordPress to a new server setup I just made, so in this tutorial I will walk you through how to backup your file contents and your database and migrate it to the new server, both servers being of the flavor <a href="http://releases.ubuntu.com/14.04/" target="_blank" rel="nofollow">Ubuntu 14.04 LTS</a>.
+Sometimes a change of scenery is really good for you, sometimes it&#8217;s even true for your WordPress site. For example you want to move your website from a server located in Germany to one of your servers in the US for better connectivity for the American users. [I&#8217;m using DigitalOcean as my VPS provider]({{ site.baseurl }}/vps-self-hosted-at-digital-ocean/) and you have the option to take a snapshot and move the whole server, but in my case this was not what I wished to do, I wanted to move WordPress to a new server setup I just made, so in this tutorial I will walk you through how to backup your file contents and your database and migrate it to the new server, both servers being of the flavor <a href="http://releases.ubuntu.com/14.04/" target="_blank" rel="nofollow">Ubuntu 14.04 LTS</a>.
 <!--more-->
 ## Move WordPress using SCP
 

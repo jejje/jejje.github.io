@@ -42,7 +42,7 @@ Jag kommer att uppdatera om hur det går med denna domän, om det löser sig ell
 På det välkända forumet  för webbmasters skriver många andra hur de har blivit missnöjda – och andra som också känner sig lite lurade. Tråden börjar med tips på gratis erbjudandet, men går snabbt över till många frågetecken och missnöjen. <a title="Diskussion om NuNames erbjudand om Gratis .NU domän - som sedan visar sig inte är helt gratis i slutändan. " href="http://www.wn.se/showthread.php?t=1058137" target="_blank" rel="nofollow">Läs själv mer i tråden hos WN.se</a>
 
 <p style="font-size: 1.2em;">
-  <strong>Detta inlägg postades i</strong> <em>Datorer & IT, Domäner, Nyheter</em> <strong>och märktes</strong> <em>digitala tjänster, domännamn, varning</em> <strong>den <a title="02:05" href="https://web.archive.org/web/20140517135149/http://jejje.net/varning-for-nunames-nu/" rel="bookmark"><time class="entry-date" datetime="2013-06-16T14:05:34+00:00">16 juni, 2013</time></a>.</strong>
+  <strong>Detta inlägg postades i</strong> <em>Datorer & IT, Domäner, Nyheter</em> <strong>och märktes</strong> <em>digitala tjänster, domännamn, varning</em> <strong>den <a title="02:05" href="https://web.archive.org/web/20140517135149/{{ site.baseurl }}/varning-for-nunames-nu/" rel="bookmark"><time class="entry-date" datetime="2013-06-16T14:05:34+00:00">16 juni, 2013</time></a>.</strong>
 </p>
 
 <div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">

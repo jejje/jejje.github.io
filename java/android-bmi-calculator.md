@@ -15,7 +15,7 @@ Android development can be both fun and painful, there&#8217;s a lot to learn &#
 
 ## Tutorial
 
-  * <a href="http://jejje.net/make-your-own-bmi-calculator-android-app/" target="_blank">Make your own BMI Calculator Android App</a>
+  * <a href="{{ site.baseurl }}/make-your-own-bmi-calculator-android-app/" target="_blank">Make your own BMI Calculator Android App</a>
 
 ## Source code
 
@@ -25,7 +25,7 @@ Android development can be both fun and painful, there&#8217;s a lot to learn &#
 
 <div class="onp-locker-call" style="display: none;" data-lock-id="onpLock259146">
   <p>
-    Download the APK file for <a href="http://jejje.net/dl/BMI_Calculator_Tutorial.apk">BMI Calculator</a>, remember you&#8217;ll have to accept to install apps since I do not have a valid Android Developer Certificate
+    Download the APK file for <a href="{{ site.baseurl }}/dl/BMI_Calculator_Tutorial.apk">BMI Calculator</a>, remember you&#8217;ll have to accept to install apps since I do not have a valid Android Developer Certificate
   </p>
 </div>
 

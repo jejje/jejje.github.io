@@ -13,12 +13,12 @@ A big player on the programming field is Java, this player is here to stay and I
 
 ## Tutorials
 
-  * [Make your own BMI Calculator Android App](http://jejje.net/make-your-own-bmi-calculator-android-app/)
+  * [Make your own BMI Calculator Android App]({{ site.baseurl }}/make-your-own-bmi-calculator-android-app/)
 
 ## Applications
 
-  * [BMI Calculator Android App](http://jejje.net/java/android-bmi-calculator/)
-  * [Alcohol Calculator](http://jejje.net/java/android-alcohol-calculator/)
+  * [BMI Calculator Android App]({{ site.baseurl }}/java/android-bmi-calculator/)
+  * [Alcohol Calculator]({{ site.baseurl }}/java/android-alcohol-calculator/)
 
 <div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
 </div>

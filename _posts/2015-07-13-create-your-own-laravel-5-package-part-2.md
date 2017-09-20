@@ -29,11 +29,11 @@ tags:
   - laravel 5
   - php
 ---
-In a previous article we begun to look into developing our own simple package for Laravel 5 and in this article we will continue where we left off and finish our little Gravatar package, to begin we&#8217;ll summarize what we&#8217;ve done so far in [Create your own Laravel 5 package Part 1](http://jejje.net/create-your-own-laravel-5-package-part-1/).
+In a previous article we begun to look into developing our own simple package for Laravel 5 and in this article we will continue where we left off and finish our little Gravatar package, to begin we&#8217;ll summarize what we&#8217;ve done so far in [Create your own Laravel 5 package Part 1]({{ site.baseurl }}/create-your-own-laravel-5-package-part-1/).
 <!--more-->
-  * [Created our Laravel 5 project](http://jejje.net/create-your-own-laravel-5-package-part-1/#create-new-laravel-5-project)
-  * [Created our Gravatar package](http://jejje.net/create-your-own-laravel-5-package-part-1/#create-our-gravatar-package)
-  * [Created our Facade and Configuration file](http://jejje.net/create-your-own-laravel-5-package-part-1/#add-facade-and-configuration-file)
+  * [Created our Laravel 5 project]({{ site.baseurl }}/create-your-own-laravel-5-package-part-1/#create-new-laravel-5-project)
+  * [Created our Gravatar package]({{ site.baseurl }}/create-your-own-laravel-5-package-part-1/#create-our-gravatar-package)
+  * [Created our Facade and Configuration file]({{ site.baseurl }}/create-your-own-laravel-5-package-part-1/#add-facade-and-configuration-file)
 
 Great, we&#8217;re now up to speed on our package development, and it&#8217;s finally time for the best part &#8211; the actual coding! Remember that this package is a simple tutorial and it could really need some improvement, and <a href="https://github.com/jejje/gravatar" target="_blank" rel="nofollow">feel free to fork my project</a> and update me on your improvements!
 

@@ -13,8 +13,8 @@ As a part of an Tutorial series I wrote this basic Gravatar package for Laravel 
 
 ## Tutorial
 
-  * [Create your own Laravel 5 package &#8211; Part 1](http://jejje.net/create-your-own-laravel-5-package-part-1/)
-  * [Create your own Laravel 5 package &#8211; Part 2](http://jejje.net/create-your-own-laravel-5-package-part-2/)
+  * [Create your own Laravel 5 package &#8211; Part 1]({{ site.baseurl }}/create-your-own-laravel-5-package-part-1/)
+  * [Create your own Laravel 5 package &#8211; Part 2]({{ site.baseurl }}/create-your-own-laravel-5-package-part-2/)
 
 ##  Source and Packagist
 

@@ -21,7 +21,7 @@ When you&#8217;re going to start your local Bukkit server you will need to open 
 <!--more-->
 ## Making a batch file using a predefined Java path
 
-If you&#8217;ve [set Java into your System path variables](http://jejje.net/set-system-path-variable-in-windows/ "Set system path variable in Windows"), which I give a walk through of, this will be the easiest batch file since it will not need the path to the Java, and it looks something like this:
+If you&#8217;ve [set Java into your System path variables]({{ site.baseurl }}/set-system-path-variable-in-windows/ "Set system path variable in Windows"), which I give a walk through of, this will be the easiest batch file since it will not need the path to the Java, and it looks something like this:
 
 <pre>java -Xmx1G -jar craftbukkit.jar -o true
 PAUSE
@@ -31,7 +31,7 @@ The second flag **-Xmx1G** tells the system to give the Bukkit server 1Gb of RAM
 
 ## Making a batch file without defined Java path
 
-If you&#8217;re unsure about how to set your System path variables, or you&#8217;ve had troubles doing it this few lines will make your life easier since this batch file will check for what system you are on x32- or x64-bit. And it will then run Java from the appropriate path, I would recommend you to read my guide on [how to setting System Variables](http://jejje.net/set-system-path-variable-in-windows/ "Set system path variable in Windows") to make it easier in the future.
+If you&#8217;re unsure about how to set your System path variables, or you&#8217;ve had troubles doing it this few lines will make your life easier since this batch file will check for what system you are on x32- or x64-bit. And it will then run Java from the appropriate path, I would recommend you to read my guide on [how to setting System Variables]({{ site.baseurl }}/set-system-path-variable-in-windows/ "Set system path variable in Windows") to make it easier in the future.
 
 <pre>@ECHO OFF
 IF /I "%PROCESSOR_ARCHITECTURE:~-2%"=="64" "%ProgramFiles(x86)%\Java\jre7\bin\java.exe" -Xmx1024M -jar "craftbukkit.jar"

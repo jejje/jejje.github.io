@@ -42,7 +42,7 @@ This one has a lot <a href="https://wordpress.org/plugins/all-in-one-wp-security
 
 [<img class="aligncenter wp-image-174 size-full" src="https://i2.wp.com/jejje.net/wp-content/uploads/2015/06/security_gauge.png?resize=608%2C204" alt="All In One WP Security & Firewall has a nice guage to represent the security level of your WordPress" srcset="https://i1.wp.com/jejje.net/wp-content/uploads/2015/06/security_gauge.png?w=608 608w, https://i1.wp.com/jejje.net/wp-content/uploads/2015/06/security_gauge.png?resize=300%2C101 300w" sizes="(max-width: 608px) 100vw, 608px" data-recalc-dims="1" />](https://i1.wp.com/jejje.net/wp-content/uploads/2015/06/security_gauge.png)
 
-It still has basically everything you need and about the same features as iThemes has, but it is not as easy as clicking &#8220;just fix it already&#8221; &#8211; well almost at least. I found that this took a little bit longer to setup but it&#8217;s packed with good features, and as I mentioned above a few flaws ([in my opinion](http://jejje.net/wp-content/uploads/2015/06/big-lebowski.jpg)).
+It still has basically everything you need and about the same features as iThemes has, but it is not as easy as clicking &#8220;just fix it already&#8221; &#8211; well almost at least. I found that this took a little bit longer to setup but it&#8217;s packed with good features, and as I mentioned above a few flaws ([in my opinion]({{ site.baseurl }}/wp-content/uploads/2015/06/big-lebowski.jpg)).
 
 ### Wordfence Security &#8211; 4,9/5
 

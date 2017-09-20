@@ -29,8 +29,10 @@ navigation:
   url: /
 - text: About
   url: /about/
-- text: Style Guides
-  url: /style-guide/
+- text: Java
+  url: /java/
+- text: PHP
+  url: /php/
 - text: Archives
   url: /tags/
 

@@ -10,7 +10,7 @@ One of the main programming languages I use is PHP and under this page I will po
 
 ## Laravel
 
-  * [Gravatar Package for Laravel 5](http://jejje.net/php/laravel-5-gravatar-package/)
+  * [Gravatar Package for Laravel 5]({{ site.baseurl }}/php/laravel-5-gravatar-package/)
 
 &nbsp;
 

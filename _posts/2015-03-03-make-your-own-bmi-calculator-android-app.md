@@ -37,12 +37,16 @@ This is a great practice for people who’ve just begun their Android or even Ja
 
 A good place to start is to set up the strings we&#8217;ll need in our app. When calculating BMI you will need two values from the user, their height and their weight. So we&#8217;re going to need two TextView strings, and one string for our button and of course we&#8217;ll need the name of the App &#8211; lets name it BMI Calculator.
 
-<pre class="lang:xhtml decode:true" title="res/values/strings.xml"><resources>
+{% raw %}
+
+<resources>
     <string name="app_name">BMI Calculator</string>
     <string name="bmi_weight">Weight in KG:</string>
     <string name="bmi_height">Height in CM:</string>
     <string name="bmi_calc_button">Calculate BMI</string>
-</resources></pre>
+</resources>
+
+{% endraw %}
 
 ## Making your app beautiful, kind of
 
