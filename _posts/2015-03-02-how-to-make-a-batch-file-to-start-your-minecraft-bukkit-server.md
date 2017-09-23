@@ -23,9 +23,10 @@ When you&#8217;re going to start your local Bukkit server you will need to open 
 
 If you&#8217;ve [set Java into your System path variables]({{ site.baseurl }}/set-system-path-variable-in-windows/ "Set system path variable in Windows"), which I give a walk through of, this will be the easiest batch file since it will not need the path to the Java, and it looks something like this:
 
-<pre>java -Xmx1G -jar craftbukkit.jar -o true
+```posh
+java -Xmx1G -jar craftbukkit.jar -o true
 PAUSE
-</pre>
+```
 
 The second flag **-Xmx1G** tells the system to give the Bukkit server 1Gb of RAM but you could also set it like **-Xmx1024M**, I usually give my server 2Gb of my 8Gb I have &#8211; but depending on how many plugins and how many players you have it can be a lot lower than that. Try it out and see what fits your needs!
 
@@ -33,13 +34,12 @@ The second flag **-Xmx1G** tells the system to give the Bukkit server 1Gb of RAM
 
 If you&#8217;re unsure about how to set your System path variables, or you&#8217;ve had troubles doing it this few lines will make your life easier since this batch file will check for what system you are on x32- or x64-bit. And it will then run Java from the appropriate path, I would recommend you to read my guide on [how to setting System Variables]({{ site.baseurl }}/set-system-path-variable-in-windows/ "Set system path variable in Windows") to make it easier in the future.
 
-<pre>@ECHO OFF
+```posh
+@ECHO OFF
 IF /I "%PROCESSOR_ARCHITECTURE:~-2%"=="64" "%ProgramFiles(x86)%\Java\jre7\bin\java.exe" -Xmx1024M -jar "craftbukkit.jar"
 IF /I "%PROCESSOR_ARCHITECTURE:~-2%"=="86" "%ProgramFiles%\Java\jre7\bin\java.exe" -Xmx1024M -jar "craftbukkit.jar"
 PAUSE
-</pre>
+```
 
 Hopefully this will help, but as I mentioned two times above &#8211; it&#8217;s always easier to define the path to Java in your System Variables, because then you may run any type of Java from the command line with ease.
 
-<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
-</div>

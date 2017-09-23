@@ -21,10 +21,3 @@ I used the schools printers to print out everything I could get my hands on, sin
 ## Contact me
 
 <a title="JejjE's network Facebook page" href="http://facebook.com/jejje.net" target="_blank">Facebook page</a>
-
-[contact-form-7 id=&#8221;6&#8243; title=&#8221;Contact form 1&#8243;]
-
-&nbsp;
-
-<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
-</div>

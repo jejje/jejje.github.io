@@ -49,20 +49,25 @@ We&#8217;re going to make a simple package that will return a user Gravatar or a
 
 Let&#8217;s begin with a fresh copy of Laravel, I assume you have everything setup like composer and laravel global.
 
-<pre class="lang:default decode:true " title="Create a new laravel project">laravel new package-tutorial</pre>
+<pre class="highlight" title="Create a new laravel project">laravel new package-tutorial</pre>
 
 When it has finished the installation we need to add our project into our homestead, open it up using **homestead edit**. And add the new project.
 
-<pre class="lang:default decode:true " title="Add the site to Homestead.yml">- map: package-tutorial.dev
-  to: /home/vagrant/Code/package-tutorial/public</pre>
+```yaml?start_inline=1
+- map: package-tutorial.dev
+to: /home/vagrant/Code/package-tutorial/public
+```
 
 When you&#8217;ve updated the homestead file you need to re-provision it with **homestead** **provision**, and add the new site into your **hosts** file. Great, now we have a clean install to work with! We will need a package called **workbench**, as I&#8217;m writing this you&#8217;ll need the _dev-master_ version since it&#8217;s the only one updated for Laravel 5.
 
-<pre class="lang:default decode:true " title="Require workbench with composer">composer require xtwoend/workbench:dev-master --require-dev</pre>
+<pre class="highlight" title="Require workbench with composer">composer require xtwoend/workbench:dev-master --require-dev</pre>
+
 
 You&#8217;ll also need to add it to your Service Providers in _app/config/app.php_.
 
-<pre class="lang:default decode:true" title="Add Service Provider">Xtwoend\Workbench\WorkbenchServiceProvider::class,</pre>
+```php?start_inline=1
+Xtwoend\Workbench\WorkbenchServiceProvider::class,
+```
 
 Now we can see a new command if we run _php artisan_ called **workbench**, we can using this create a new package. We&#8217;ll need to publish the config file for workbench so that we may setup our author credentials.
 
@@ -82,7 +87,8 @@ Now we just need to wait for the dependencies to be pulled in, it  won&#8217;t 
 
 **Oh, no!** We&#8217;re getting an error message that the class is not found! I had to Google around to figure out why I was getting this error message, and the solution was to add this to the _/bootstrap/autoload.php_.
 
-<pre class="lang:default decode:true " title="Add to /bootstrap/autoload.php">/*
+```php?start_inline=1
+/*
 |--------------------------------------------------------------------------
 | Register The Workbench Loaders
 |--------------------------------------------------------------------------
@@ -96,7 +102,8 @@ Now we just need to wait for the dependencies to be pulled in, it  won&#8217;t 
 if (is_dir($workbench = __DIR__.'/../workbench'))
 {
     Xtwoend\Workbench\Starter::start($workbench);
-}</pre>
+}
+```
 
 <a name="add-facade-and-configuration-file"></a>
 
@@ -110,24 +117,26 @@ We&#8217;ve now come so far that it is time to start coding and I think we shoul
 
 In our package folder _/workbench/jejje/gravatar/src/Jejje/Gravatar/_ we will add a PHP class that extends the Laravel Facade, we&#8217;ll name it Gravatar.
 
-<pre class="lang:php decode:true" title="/workbench/jejje/gravatar/src/Jejje/Gravatar/Gravatar.php"><?php namespace Jejje\Gravatar;
+```php?start_inline=1
+<?php namespace Jejje\Gravatar;
 
-use Illuminate\Support\Facades\Facade;
-
-class Gravatar extends Facade {
-
-    /**
-     * Facade for our Gravatar Package
-     * so that we may use it like
-     * Gravatar::method();
-     *
-     * @return string
-     */
-    protected static function getFacadeAccessor() {
-        return 'Jejje\Gravatar\Image';
+    use Illuminate\Support\Facades\Facade;
+    
+    class Gravatar extends Facade {
+    
+        /**
+         * Facade for our Gravatar Package
+         * so that we may use it like
+         * Gravatar::method();
+         *
+         * @return string
+         */
+        protected static function getFacadeAccessor() {
+            return 'Jejje\Gravatar\Image';
+        }
+    
     }
-
-}</pre>
+```
 
 The _getFacadeAccessor_ binds the Facade to the PHP Class where all our logic will be stored and we&#8217;re going to name it **Image**, and we&#8217;ll do this in the next part of this tutorial since it&#8217;s going to be a long file with some nice methods. But just before we finish up I&#8217;d like to setup a configuration file that we&#8217;ll need in the main class.
 
@@ -137,19 +146,21 @@ The _getFacadeAccessor_ binds the Facade to the PHP Class where all our logic wi
 
 It&#8217;s quite simple to make a configuration file where users can edit settings for our package, we&#8217;re not going to have many settings &#8211; we&#8217;re just doing it to get a light grasp on the concept. In our Gravatar folder create a folder called _config_ and a file within it called _config.php_.
 
-<pre class="lang:default decode:true " title="/workbench/jejje/gravatar/src/Jejje/Gravatar/config/config.php"><?php
-
-return [
-    'default_gravatar_size' => 100
-];</pre>
-
+```php?start_inline=1
+<?php
+    /* /workbench/jejje/gravatar/src/Jejje/Gravatar/config/config.php */
+    return [
+        'default_gravatar_size' => 100
+];
+```
+s
 It&#8217;s a simple file that just returns an array as you can see, you can go as nuts as you like with settings and arrays within arrays if you need to. We need to register this in our **GravatarServiceProvider**.
 
-<pre class="lang:default mark:22-27 decode:true"><?php namespace Jejje\Gravatar;
+```php?start_inline=1
+<?php namespace Jejje\Gravatar;
+    use Illuminate\Support\ServiceProvider;
 
-use Illuminate\Support\ServiceProvider;
-
-class GravatarServiceProvider extends ServiceProvider {
+    class GravatarServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -170,7 +181,8 @@ class GravatarServiceProvider extends ServiceProvider {
          * This will publish the config file when you do vendor:publish
          */
         $this->publishes([
-            __DIR__.'/config/config.php' => config_path('jejje/gravatar/config.php'),
+            __DIR__.'/config/config.php' => 
+            config_path('jejje/gravatar/config.php'),
         ]);
 	}
 
@@ -185,7 +197,7 @@ class GravatarServiceProvider extends ServiceProvider {
 	}
 
 }
-</pre>
+```
 
 When you have updated your Service Provider you should run _vendor:publish_ so that the configuration file gets saved to your project config folder like this _/config/jejje/gravatar/config.php_. To finish up run;
 
@@ -193,7 +205,5 @@ When you have updated your Service Provider you should run _vendor:publish_ so t
 
 We&#8217;ve made great progress so far and I&#8217;ll see you in the next part of this series to add all our logic to make it work, and we&#8217;ll also look into how to publish our work.
 
-&nbsp;
 
-<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
-</div>
+

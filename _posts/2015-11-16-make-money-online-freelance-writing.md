@@ -35,7 +35,7 @@ However, there are some things you need to come to terms with, if you are to act
 
 ### Make money via iWriter
 
-This platform is amazing for both content writers and buyers. <a href="http://jejje.net/go/iwriter" target="_blank">iWriter have a high demand for quality articles</a> and gives you the opportunity to to sell a lot of articles. Comparing iWriter to Fiverr there are a lot of diffrences. To begin with &#8211; Fiverr takes an average of five days before your deadline, while iWriter&#8217;s deadline is usually withing a few hours. Which can easily convert into top payments if you are a great writer.
+This platform is amazing for both content writers and buyers. <a href="http://jejje.net/go/iwriter.html" target="_blank">iWriter have a high demand for quality articles</a> and gives you the opportunity to to sell a lot of articles. Comparing iWriter to Fiverr there are a lot of diffrences. To begin with &#8211; Fiverr takes an average of five days before your deadline, while iWriter&#8217;s deadline is usually withing a few hours. Which can easily convert into top payments if you are a great writer.
 
 #### Pass iWriters grammar test and earn money
 
@@ -51,7 +51,7 @@ To start earning as much as the image, where you would earn $48.60, you will nee
 
 ### Make Money via Fiverr
 
-If you know more than just content writing this is the platform for you. <a href="http://jejje.net/go/fiverr" target="_blank">Fiverr is a great source for buying and selling services</a> such as article writing, WordPress development and Logo design.
+If you know more than just content writing this is the platform for you. <a href="http://jejje.net/go/fiverr.html" target="_blank">Fiverr is a great source for buying and selling services</a> such as article writing, WordPress development and Logo design.
 
 If we&#8217;re looking to earn money by writing on Fiverr the client must choose **you** to write. While on iWriter you are the one picking the projects. But then again Fiverr also pays more per average of 500 words.
 

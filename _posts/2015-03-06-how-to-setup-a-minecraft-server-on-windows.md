@@ -70,7 +70,7 @@ But right before we can actually run this batch file, we need to <a title="Read 
 
 We&#8217;re actually already done and your friends can join as long as the server is up, but I always do a few settings before I give my IP to my friends. These are not required but it&#8217;s always good to look through a settings file before you open it up to others so that you don&#8217;t need to restart because you in hindsight remembered that you should have done.
 
-<pre>level-seed=<some cool seed>
+<pre>level-seed=&lt;some cool seed&gt;
 difficulty=3
 enable-command-block=true
 max-players=10

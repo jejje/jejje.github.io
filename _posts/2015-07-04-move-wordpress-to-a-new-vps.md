@@ -39,6 +39,7 @@ Now when we&#8217;ve zipped our folder we can securely copy it onto **test2.jejj
 
 <pre class="lang:default decode:true" title="Securely copy file from test1.jejje.net to test2.jejje.net">scp public_html.tar.gz jejje@test2.jejje.net:/home/jejje/</pre>
 
+
 A password prompt will pop up and all you need to do is enter it and wait for the files to transfer, it won&#8217;t take long at all depending on the size of your website.
 
 ## Backup your WordPress database

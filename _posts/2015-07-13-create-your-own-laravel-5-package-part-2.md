@@ -55,7 +55,7 @@ Great, we&#8217;re now up to speed on our package development, and it&#8217;s fi
 
 As a refresher we made our Facade and linked it to a file that we have not yet created, the PHP class **Image** and we know we&#8217;re going to need the **Config** facade from Laravel 5. Keep in mind that I&#8217;m going to break up this file into sections, we&#8217;ll begin with the first method of the file.
 
-<pre>
+```php
 <?php namespace Jejje\Gravatar;
 
 use Illuminate\Support\Facades\Config;
@@ -80,12 +80,13 @@ class Image {
         return $size;
     }
 
- </pre>
+```
 
 Here we&#8217;re making use of our configuration file we made in the previous article, we only have one setting and it&#8217;s the _default\_gravatar\_size_ which we set to _100_ if we do not supply and override it as a second argument.
 
-<pre>
-/**
+
+```php?start_inline=1
+    /**
      * Method to reuse the Gravatar image url
      *
      * @param $id
@@ -107,12 +108,12 @@ Here we&#8217;re making use of our configuration file we made in the previous ar
     {
         return "http://www.gravatar.com/$id";
     }
- </pre>   
+```
 
 These methods is only used as an part of easy access of the Gravatar url depending if we need the avatar or the profile. These methods are private and is not accessible via the Facade.
 
-<pre>
-/**
+```php?start_inline=1
+    /**
      * This method is used to retrive url to users Gravatar
      * Will use default size from config file unless size
      * argument is passed.
@@ -132,12 +133,12 @@ These methods is only used as an part of easy access of the Gravatar url dependi
 
         return $this->gravatarImage($gravatar_hash, $size);
     }
- </pre>
+ ```
 
 This is one of the main methods that we would be using, it takes two parameters the email of the user which is required and the optional size argument. As you can see if the none is provided, we&#8217;ll fetch it from our **getGlobalSize()** which get it from the config file. But wait a minute, there&#8217;s one method used here that we don&#8217;t have &#8211; yes, we do not have it just yet, we&#8217;ll get there.
 
-<pre>
-/**
+```php?start_inline=1
+    /**
      * Will return url to requested user Gravatar.
      *
      * @param $email
@@ -149,11 +150,11 @@ This is one of the main methods that we would be using, it takes two parameters 
 
         return $this->gravatarProfile($gravatar_hash);
     }
- </pre>
+ ```
 
 This just returns the URL of the users profile, no particular magic here, and we could expand this method to actually return a tiny hCard &#8211; but it&#8217;s out of the scope of this package and tutorial.
 
-<pre>
+```php?start_inline=1
     /**
      * Will return a Gravatar image with link
      * to profile of the requested user.
@@ -178,12 +179,11 @@ This just returns the URL of the users profile, no particular magic here, and we
 
         return $image_with_link;
     }
- </pre>
+ ```
 
 This nifty method returns an image of the user with a link to their profile, this method could also get the second argument just as the **getImageUrl** can, but this actually returns the HTML for the image as well.
 
-<pre>
-
+```php?start_inline=1
     /**
      * Returns the hash of an e-mail trimmed
      * if there was any spaces in the submitted
@@ -198,10 +198,7 @@ This nifty method returns an image of the user with a link to their profile, thi
 
         return $gravatar_hash;
     }
-
-
-
- </pre>
+```
 
 This is the last part of our **Image** class, and as I mentioned before, it gets the Hashed version of the users e-mail. We&#8217;re not to far from the finish line, of course we could add lots of more features, tests and so much more but I won&#8217;t deprive you of that.
 
@@ -222,10 +219,8 @@ We&#8217;ve tried our package out, and it works _(hopefully)_ and we now plan to
 
 Workbench did all of the heavy lifting for us but we need to enter more information if we&#8217;re going to publish our Gravatar package.
 
-<pre>
-<pre><code>
+```javascript?start_inline=1
 {
-
     "name": "jejje/gravatar",
     "description": "A very simple package to get a Gravatar image or Profile. Made for education purposes for http://jejje.net",
     "license": "MIT",
@@ -252,10 +247,8 @@ Workbench did all of the heavy lifting for us but we need to enter more informat
 
     },
     "minimum-stability": "dev"
-
 }
-</code></pre>
-</pre>
+```
 
 I&#8217;ve added a description of our little package, license and homepage for our package and not to forget &#8211; more information about me, what role and website I have.
 
@@ -275,7 +268,8 @@ Create your repository at Github, I&#8217;ve created it and I called it like our
 
 Time to do a git init, which we usually do at the beginning of our package but since this is such a small package I decided to do it at the same time as I&#8217;m writing this article.
 
-<pre class="lang:default decode:true ">git init
+```shell
+git init
 
 git remote add origin https://github.com/jejje/gravatar.git
 
@@ -283,7 +277,8 @@ git add .
 
 git commit -m "First commit"
 
-git push -u origin master </pre>
+git push -u origin master 
+```
 
 If you didn&#8217;t encounter any errors, great! I did encounter a few, but a few Google searches fixed that just as usual.
 

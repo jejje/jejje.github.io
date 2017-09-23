@@ -5,7 +5,7 @@
 
 /* Colors */
 $alabaster: #fafafa;
-$gallery: #ededed;
+$gallery: #002b36; // EDEDED
 $gray: #818181;
 $mine-shaft: #333333;
 //$picton-blue: #22b3eb;
@@ -17,5 +17,37 @@ $white: #ffffff;
 
 
 
+/*
+base01    #586e75  body text / default code / primary content
+base1     #93a1a1  comments / secondary content
+base3     #fdf6e3  background
+orange    #cb4b16  constants
+red       #dc322f  regex, special keywords
+blue      $picton-blue  reserved keywords
+cyan      #2aa198  strings, numbers
+green     #859900  operators, other keyw
+*/
+
+$base01: #586e75;
+$base1: #93a1a1;
+$base3: #fdf6e3;
+
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
 
 
+$comment: #b1cc00;

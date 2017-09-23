@@ -37,22 +37,23 @@ This is a great practice for people who’ve just begun their Android or even Ja
 
 A good place to start is to set up the strings we&#8217;ll need in our app. When calculating BMI you will need two values from the user, their height and their weight. So we&#8217;re going to need two TextView strings, and one string for our button and of course we&#8217;ll need the name of the App &#8211; lets name it BMI Calculator.
 
-{% raw %}
-
+```xml
+<!-- res/values/strings.xml -->
 <resources>
     <string name="app_name">BMI Calculator</string>
     <string name="bmi_weight">Weight in KG:</string>
     <string name="bmi_height">Height in CM:</string>
     <string name="bmi_calc_button">Calculate BMI</string>
 </resources>
-
-{% endraw %}
+```
 
 ## Making your app beautiful, kind of
 
 Lets get our layout design out of our way, it doesn’t have to be to complicated to fit our needs. We’ll just use a simple RelativeLayout, and put everything below each item. I know it’s not fancy, but hey &#8211; it’s functional!
 
-<pre class="lang:xhtml decode:true " title="res/layout/activity_main.xml"><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+```xml
+<!-- res/layout/activity_main.xml" -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -131,22 +132,25 @@ Lets get our layout design out of our way, it doesn’t have to be to complicate
         android:textSize="50sp"
         android:layout_below="@+id/bmi_calc_button"
         android:layout_centerHorizontal="true" />
-</RelativeLayout></pre>
+</RelativeLayout>
+```
 
 This is how our Android app looks when rendered, as I said &#8211; it’s not the fanciest app you’ve seen but that is for another article, it’s functional and that’s the point of this tutorial. As you can see we have four TextViews, two number EditTexts and one Button, and we&#8217;ve made use of our previously made strings for easy editing.
 
-[<img class="aligncenter wp-image-110" src="https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=480%2C853" alt="How our Android app will look" srcset="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?w=1080 1080w, https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=169%2C300 169w, https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=576%2C1024 576w" sizes="(max-width: 480px) 100vw, 480px" data-recalc-dims="1" />](https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png)
+[<img class="center aligncenter wp-image-110" src="https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=480%2C853" alt="How our Android app will look" srcset="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?w=1080 1080w, https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=169%2C300 169w, https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=576%2C1024 576w" sizes="(max-width: 480px) 100vw, 480px" data-recalc-dims="1" />](https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png)
 
 ## Finally some Java code
 
 Finally we’re ready to begin with the actual Java coding for our application, are you excited? Good, you should be &#8211; coding is fun! We’ll begin by declaring some of our variables we’ll need, and then find the view items by their id.
 
-<pre class="lang:java decode:true">// Find UI elements by ID and save to variable
+```java?start_inline=1
+// Find UI elements by ID and save to variable
 EditText height = (EditText) findViewById(R.id.height_input);
 EditText weight = (EditText) findViewById(R.id.weight_input);
 TextView bmi_result = (TextView) findViewById(R.id.bmi_result);
 Button button = (Button) findViewById(R.id.bmi_calc_button);
-</pre>
+```
+
 
 Now we have setup our variables, and we will need to write a Listener for our button, since we only have one button to listen for we can keep it simple and stick everything in our main class. We do need to check for null values though, and we’re going to use Toast to tell the user that they need to enter the missing values.
 
@@ -159,7 +163,8 @@ final Context context = this;</pre>
 
 I’ve chosen to put this helper method at the bottom of our class, and it takes one String argument, which is the message we’re sending.
 
-<pre class="lang:java decode:true">/***
+```java?start_inline=1
+/***
  * This method will send the user a Toast
  * which is a small black popup that is 
  * only visible for a few seconds.
@@ -178,11 +183,12 @@ public void sendToast(String msg)
     Toast toast = Toast.makeText(context, text, duration);
     toast.show();
 }
-</pre>
+```
 
 Looks neat right? When we’re coding we always need to be thinking and <a title="DRY - Don't Repeat Yourself" href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank" rel="nofollow">following the DRY principles</a>. As I mentioned above, we need to listen to the button click and then check for null values, or else our Android app will crash on launch &#8211; let’s do that now in our **onCreate()** method below our variables we set earlier.
 
-<pre class="lang:java decode:true" title="Button Listener">// Listen for our click event
+```java?start_inline=1
+// Listen for our click event
 button.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -223,11 +229,13 @@ button.setOnClickListener(new View.OnClickListener() {
         // Set the bmi_result view item of the value of our BMI
         bmi_result.setText(String.valueOf(BMI));
     }
-});</pre>
+});
+```
 
 Not many lines of code and you’ve made a simple Android app that gets input from the user and then updates the textview from zero to the users BMI. I know that this app needs a lot of refinement, for example if the user enters zero as height or weight the result will be NaN _(Not a Number)_ and more checking is needed, but for this short tutorial it&#8217;s overkill. Just below here is our full code of our **MainActivity.java** &#8211; everything put together.
 
-<pre class="lang:java decode:true" title="MainActivity.java">package net.jejje.java.bmicalculatortutorial;
+```java
+package net.jejje.java.bmicalculatortutorial;
 
 import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
@@ -321,9 +329,8 @@ public class MainActivity extends ActionBarActivity {
         toast.show();
     }
 
-}</pre>
+}
+```
 
 If you&#8217;re not a Copy and paste kind of guy or gal, you can find the code for this Tutorial at my GitHub page, <a href="https://github.com/jejje/android-bmi-calculator-tutorial" target="_blank" rel="nofollow">BMI Calculator Tutorial at GitHub</a>.
 
-<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
-</div>

@@ -26,7 +26,7 @@ If you&#8217;re going to be one of many other users who are going to choose the 
 
 I was curios about the new operation system so I <a href="http://windows.microsoft.com/en-us/windows/preview-iso" target="_blank" rel="nofollow">downloaded the free preview ISO of Windows 10 from Microsoft</a> and installed it on a <a href="https://www.virtualbox.org/" target="_blank" rel="nofollow">Virtual Machine in Virtualbox</a>, it is not yet recommended to replace it so I found this to be a great option. I took a look around to see some of the differences and the feel of it, and at first I  even had big troubles finding the Updates part in the Control Panel until I later found out a separate settings panel, check out my Youtube video below to get a sneak peak.
 
-<!--YouTube Error: bad URL entered-->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f8cHTZia5CU" frameborder="0" allowfullscreen></iframe>
 
 <div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
 </div>
