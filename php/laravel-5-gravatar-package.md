@@ -23,13 +23,11 @@ As a part of an Tutorial series I wrote this basic Gravatar package for Laravel 
 
 ## Usage example
 
-<pre class="lang:default decode:true ">public function index() {
+```php?start_inline=1
+public function index() {
     $email = 'jejje@jejje.net';
     $size = 100; // Optional, you may set a default in the config file
     Gravatar::getImageWithLinkToProfile($email, $size);
-}</pre>
+}
+```
 
-&nbsp;
-
-<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
-</div>
