@@ -21,7 +21,7 @@ tags:
 
 This weekend a group of guys and I met up at our local Paintball field and played some awesome paintball in the woods.
 
-Check out[Paintball is more fun with Friends // Captain JejjE and Mäki // JejjE](https://youtu.be/wSOS-VplPfc)
+Check out[The Most Awesome Vacation: Paintball in Falköping - Part 2 // JejjE](https://youtu.be/wSOS-VplPfc)
 
 
 
