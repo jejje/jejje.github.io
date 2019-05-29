@@ -1,5 +1,5 @@
 ---
-title: The Most Awesome Vacation: Paintball in Falköping - Part 2 
+title: The Most Awesome Vacation Paintball in Falköping - Part 2 
 date: 2019-05-29T12:42:15+00:00
 author: JejjE
 layout: post
