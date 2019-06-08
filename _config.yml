@@ -21,7 +21,7 @@ sass:
   sass_dir: _sass
 
 # The base hostname & protocol of your site for where absolute urls are needed
-url: "http://jejje.net"
+url: "https://jejje.net"
 
 # Site navigation - each item must have a title and a url.
 navigation:
@@ -42,7 +42,7 @@ disqus: jejjesnetwork
 # Author information - author info at the bottom of the post
 author_name: "Jimmy Nelsing"
 author_bio: "I'm a computer enthusiast who loves the web and web development, I've used Wordpress for a long time on and off for different web pages for many years. I also like to develop in PHP, especially with Laravel and have also started with Java programming as side projects - testing out Bukkit and Android."
-author_url:  "http://jejje.net/"
+author_url:  "https://jejje.net/"
 author_location: ""
 author_image: /images/authorimage.png #http://1.gravatar.com/avatar/2399981ba70b11a192f1ddd0e2747b16
 
