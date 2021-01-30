@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">    
+    <title>VPS Self Hosted at Digital Ocean</title> 
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="google-site-verification" content="zSRep29ke9RlQZVU7x2nqB8BTjjn5Goam0cGRmWV2TQ" />
+
+    <!-- <link rel="shortcut icon" href="/favicon.ico"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#333333">
+    <meta name="theme-color" content="#333333">
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="canonical" href="http://192.168.0.141:4000/vps-self-hosted-at-digital-ocean/">
+    <link rel="alternate" type="application/rss+xml" title="JejjE's network Feed" href="http://192.168.0.141:4000/feed.xml">
+</head>
+<body>
+    <nav id="top" class="site-navigation">
+	
+        <div class="inner">
+            <button id="menu-toggle" aria-expanded="false">Menu</button>
+            <div class="nav-menu">
+                <ul class="menu">
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/">Home</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/about/">About</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/java/">Java</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/php/">PHP</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/tags/">Archives</a>
+                  </li>
+                
+                </ul>        
+            </div><!-- .nav-menu -->
+            <!-- <a class="subscribe-button fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">Subscribe</span></a> -->
+        </div><!-- .inner -->
+    </nav><!-- .site-navigation -->
+    <header class="site-header">
+        <div class="inner">
+            <h1 class="site-title"><a class="logo-text" href="/">JejjE's network</a></h1>
+            <!--<p class="site-description">Thoughts, stories and ideas.</p>-->
+			
+			
+			<a href="https://www.youtube.com/channel/UCtdUyyxgJfiVXQDNh0E6Y0Q" class="fa-youtube-play square fill-horizontal"><span class="screen-reader-text">YouTube</span></a>
+			<a href="http://instagram.com/jejjefosho" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+			<a href="https://www.facebook.com/jejje.net/" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+			
+			
+			
+        </div><!-- .inner -->
+    </header>
+    <div class="site-content">
+    <div class="inner">
+        <main class="site-main">
+            <article class="post">
+                <header class="entry-header">
+                    <div class="entry-header-wrap">  
+                        
+                        <h1 class="entry-title">VPS Self Hosted at Digital Ocean</h1>
+                    </div><!-- .entry-header-wrap -->
+                </header><!-- .entry-header -->
+                <div class="entry-content">
+                    <p>Servers are really fun to play around with, test different open source software like setting up an Minecraft server for you and your friends, or if you’re tired of hosting your websites at a regular web host where you have little to no control – why not try your own server? Yes, I’m aware that an dedicated system is most likely both overkill and overpriced, they come in all price ranges from to affordable to <em>sell-your-soul</em> priced. I’ve had many different web hosts and I was really satisfied with all of them, mostly – good support and high uptime. But from time to time I noticed I was looking to manage it myself, it’s hard work but I found it as a fun challenge to learn something new.</p>
+
+<h2>Moving from web hosting to self hosting</h2>
+
+<p>I found it really difficult at first, I had to spend hours of Googling because I was really not used to the Unix world – more than using Ubuntu Desktop, but that was mostly controlled via an <em>Graphical User Interface</em> with the help of the terminal. But you know what, I really enjoy learning – every Google search made me understand one extra piece of the puzzle and the experience gained was not time wasted in my opinion, to quote <strong><a href="https://plus.google.com/117682024645575752797/posts" target="_blank" rel="nofollow">Jeffery Way</a></strong> from <a href="https://laracasts.com/" target="_blank" rel="nofollow">Laracasts.</a></p>
+
+<blockquote>
+  <p>Never stop learning</p>
+</blockquote>
+
+<p>It was a couple of years ago I started learning to handle a Linux based server like <strong><a href="https://www.debian.org/" target="_blank" rel="nofollow">Debian</a></strong> or <strong><a href="http://www.ubuntu.com/" target="_blank" rel="nofollow">Ubuntu</a></strong>. I had an really old laptop with <strong>756 Mb</strong> which was hooked up to my local network and Ubuntu server was installed on it was the <a href="https://openvz.org/Main_Page" target="_blank" rel="nofollow">open source virtualization software called OpenVz</a> which I used to provision new servers more often than you’d change your underwear <em>(which you hopefully changed on a regular basis)</em>. I provisioned a server and installed a few things on it, if it didn’t go right, I would just begin from scratch and Google what I did wrong, and how I would make it work – from the beginning I had trouble making the basic stuff like chaning directories, moving files and even navigating around, but it was all a part of the learning process.</p>
+
+<h2>Digital Ocean opened my world</h2>
+
+<p>While I was provisioning Virtual Machines again and again, day in and night out – I started to feel more and more comfortable in my newly found surroundings and I wanted my own server, my very own server. My wallet on the other hand was not ready for this, and my need for it was also not quite ready for a dedicated server with, what felt like limitless RAM. While I was Googling and finding new reading material, I started to notice that every good article I found was from this new company called Digital Ocean. It was quite fitting that it was at the end of my subscription at my web host, and this new company had virtual servers <em>(just like the ones I had provisioned, but on steroids)</em> and they had a packages that was really affordable and would suit my needs just perfectly, since I only had a few websites at the moment. The price per month at my old webhosting was $<strong>7/month</strong>, and I had to subscribe per year so it was a bit much to cough up a one time a year <strong>$84</strong><strong>/year</strong>, I know it doesn’t sound like much but when you don’t have any income on your website it’s all expenses. While this package gave me the complete solution with protection and support, it was quite mundane – safe but mundane.</p>
+
+<p>This new company named Digital Ocean gave me a powerful server backed by SSDs and the freedom to do as I pleased, and it even gave me better ping even though it was further away from me than my web hosting company that was located in my country Sweden, and comparing with other service providers where you would have to pay up front per month, and you couldn’t provision new ones with ease. That’s why I chose Digital Ocean where I can pay by the hour and try out all different types of operating systems, and if you keep your server up for the full month <strong>$5</strong> was drawn from my account.</p>
+
+<h2>Get a $10 credit at Digital Ocean</h2>
+
+<p>When I got started with their services I found a promo code which gave me two full months of a <strong>512Mb</strong>, <strong>1 vCore</strong> &amp; <strong>1 Tb Transfer</strong> and that gave me enough time to backup my sites from my previous web host, and some time to install and test my new systems out. I have now had an account at Digital Ocean for long time, I can’t even remember – and I have no complaints at all, the few times I’ve encountered problems it’s been my own fault but both the staff and the great community can help you out with almost anything. Register <a href="https://www.digitalocean.com/?refcode=ed395917266e" target="_blank" rel="nofollow">using my referral code and get yourself a $10 credit</a> and at the same time help me out with my hosting, I promise you – you wont regret using Digital Ocean!</p>
+
+<p> </p>
+
+<p><a href="https://www.digitalocean.com/?refcode=ed395917266e" target="_blank" rel="nofollow"><img class="aligncenter wp-image-212 size-full" src="https://i0.wp.com/jejje.net/wp-content/uploads/2015/06/DO_Logo_Vertical_Black-1f85f3b9.png?resize=400%2C253" alt="Digital Ocean" srcset="https://i2.wp.com/jejje.net/wp-content/uploads/2015/06/DO_Logo_Vertical_Black-1f85f3b9.png?w=400 400w, https://i1.wp.com/jejje.net/wp-content/uploads/2015/06/DO_Logo_Vertical_Black-1f85f3b9.png?resize=300%2C190 300w" sizes="(max-width: 400px) 100vw, 400px" data-recalc-dims="1" /></a></p>
+
+<p> </p>
+
+<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
+</div>
+
+                </div><!-- .entry-content -->
+            </article><!-- .post -->
+        </main><!-- .site-main -->
+        <aside class="sidebar">
+    <!--
+    
+    <section class="widget widget-text">
+        <h2 class="widget-title">About Jimmy Nelsing</h2>
+        <p>I'm a computer enthusiast who loves the web and web development, I've used Wordpress for a long time on and off for different web pages for many years. I also like to develop in PHP, especially with Laravel and have also started with Java programming as side projects - testing out Bukkit and Android.</p>
+    </section><!-- .widget-text -->
+    <!--  -->
+
+    
+
+    
+
+    <section class="widget widget-text">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jejje-jekyll-1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7553949713899949"
+             data-ad-slot="8407705071"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+    <section class="widget widget-recent-posts">
+        <h2 class="widget-title">Latest Posts</h2>
+        <ul class="recent-posts">
+            
+            <li class="recent-item"><a href="/2021-01-30-sync-two-pihole-dns-servers-for-failover">Sync Two PiHole DNS Servers for Failover</a> <span>January 30, 2021</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-30-celebrating-30th-birthday-with-suprise-paintball/">Celebrating 30th Birthday with Suprise Paintball</a> <span>May 30, 2019</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-29-the-most-awesome-vacation-paintball-in-falkoping-part-2/">The Most Awesome Vacation Paintball in Falköping - Part 2</a> <span>May 29, 2019</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-27-paintball-is-more-fun-with-friends/">Paintball is more fun with your friends</a> <span>May 27, 2019</span></li>
+            
+            <li class="recent-item"><a href="/speed-up-your-website-and-move-from-wordpress-to-jekyll/">Speed up your website and move from Wordpress to Jekyll</a> <span>September 16, 2017</span></li>
+            
+        </ul><!-- .recent-posts -->
+    </section><!-- .widget-recent-posts -->
+
+    <!--Create a sorted array of tags-->
+    
+    
+    <section class="widget widget-tags">
+        <h2 class="widget-title">Tags</h2>
+        <div class="tagcloud">
+            
+            <a href="/tags/#DNS">DNS</a>
+            
+            <a href="/tags/#IDE">IDE</a>
+            
+            <a href="/tags/#android">android</a>
+            
+            <a href="/tags/#android+app">android app</a>
+            
+            <a href="/tags/#batch">batch</a>
+            
+            <a href="/tags/#bukkit">bukkit</a>
+            
+            <a href="/tags/#code">code</a>
+            
+            <a href="/tags/#command+line">command line</a>
+            
+            <a href="/tags/#command+prompt">command prompt</a>
+            
+            <a href="/tags/#development">development</a>
+            
+            <a href="/tags/#freelancer">freelancer</a>
+            
+            <a href="/tags/#how-to">how-to</a>
+            
+            <a href="/tags/#java">java</a>
+            
+            <a href="/tags/#jetbrains">jetbrains</a>
+            
+            <a href="/tags/#laravel+5">laravel 5</a>
+            
+            <a href="/tags/#make+money">make money</a>
+            
+            <a href="/tags/#minecraft">minecraft</a>
+            
+            <a href="/tags/#paintball">paintball</a>
+            
+            <a href="/tags/#php">php</a>
+            
+            <a href="/tags/#plugins">plugins</a>
+            
+            <a href="/tags/#security">security</a>
+            
+            <a href="/tags/#shell">shell</a>
+            
+            <a href="/tags/#speedball">speedball</a>
+            
+            <a href="/tags/#spigotmc">spigotmc</a>
+            
+            <a href="/tags/#tutorial">tutorial</a>
+            
+            <a href="/tags/#ubuntu">ubuntu</a>
+            
+            <a href="/tags/#vps">vps</a>
+            
+            <a href="/tags/#website">website</a>
+            
+            <a href="/tags/#windows">windows</a>
+            
+            <a href="/tags/#woodsball">woodsball</a>
+            
+            <a href="/tags/#wordpress">wordpress</a>
+            
+        </div><!-- .tagcloud -->
+    </section><!-- .widget -->
+	
+	<section class="widget widget-text">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jejje-jekyll-1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7553949713899949"
+             data-ad-slot="8407705071"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+</aside><!-- .sidebar -->
+
+    </div><!-- .inner -->
+</div><!-- .site-content -->
+
+    <footer class="site-footer">
+    <div class="inner">
+        <div class="social-links">
+            
+            
+			
+			
+			
+			
+			
+			<a href="https://www.youtube.com/channel/UCtdUyyxgJfiVXQDNh0E6Y0Q" class="fa-youtube-play square fill-horizontal"><span class="screen-reader-text">YouTube</span></a>
+			<a href="http://instagram.com/jejjefosho" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+			<a href="https://www.facebook.com/jejje.net/" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+			
+			
+			
+            
+            
+            <a href="https://github.com/jejje" class="fa-github-alt square fill-horizontal"><span class="screen-reader-text">GitHub</span></a>
+            
+            
+            
+            
+            
+			
+			
+			
+			
+            
+            
+            
+            <a class="fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">RSS</span></a>
+        </div><!-- .social-links -->
+        <div class="site-info">
+            &copy; <a href="/">JejjE's network</a> all rights reserved.
+            <a href="#top" id="top-link" class="fa-chevron-up top-link square fill-horizontal"><span class="screen-reader-text">Back to the top</span></a>
+        </div><!-- .site-info -->
+    </div><!-- .inner -->
+</footer><!-- .site-footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/plugins.js"></script>
+    <script type="text/javascript" src="/js/custom.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-34661859-9"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-34661859-9');
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+I"�Q<p>In a previous article we begun to look into developing our own simple package for Laravel 5 and in this article we will continue where we left off and finish our little Gravatar package, to begin we’ll summarize what we’ve done so far in <a href="/create-your-own-laravel-5-package-part-1/">Create your own Laravel 5 package Part 1</a>.
+<!--more--></p>
+<ul>
+  <li><a href="/create-your-own-laravel-5-package-part-1/#create-new-laravel-5-project">Created our Laravel 5 project</a></li>
+  <li><a href="/create-your-own-laravel-5-package-part-1/#create-our-gravatar-package">Created our Gravatar package</a></li>
+  <li><a href="/create-your-own-laravel-5-package-part-1/#add-facade-and-configuration-file">Created our Facade and Configuration file</a></li>
+</ul>
+
+<p>Great, we’re now up to speed on our package development, and it’s finally time for the best part – the actual coding! Remember that this package is a simple tutorial and it could really need some improvement, and <a href="https://github.com/jejje/gravatar" target="_blank" rel="nofollow">feel free to fork my project</a> and update me on your improvements!</p>
+
+<h2 id="contents">Contents</h2>
+
+<ol>
+  <li><a href="#finishing-up-our-laravel-package">Finishing up our Laravel package</a></li>
+  <li><a href="#prepare-to-publish-our-package">Prepare to publish our package</a>
+    <ol>
+      <li><a href="#update-the-package-composer-json">Update the package composer.json</a></li>
+      <li><a href="#create-a-readme-file">Create a README file</a></li>
+      <li><a href="#upload-to-github">Upload to GitHub</a></li>
+      <li><a href="#register-and-upload-on-packagist">Register and Upload on Packagist</a></li>
+    </ol>
+  </li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ol>
+
+<p><a href="https://github.com/jejje/gravatar" target="_blank" rel="nofollow">Check out the Github Page if you’re impatient</a></p>
+
+<p><a name="finishing-up-our-laravel-package"></a></p>
+
+<h2 id="finishing-up-our-laravel-package">Finishing up our Laravel package</h2>
+
+<p>As a refresher we made our Facade and linked it to a file that we have not yet created, the PHP class <strong>Image</strong> and we know we’re going to need the <strong>Config</strong> facade from Laravel 5. Keep in mind that I’m going to break up this file into sections, we’ll begin with the first method of the file.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="kn">namespace</span> <span class="nn">Jejje\Gravatar</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Config</span><span class="p">;</span>
+
+<span class="cd">/**
+ * Class Image
+ *
+ * @package Jejje\Gravatar
+ */</span>
+<span class="kd">class</span> <span class="nc">Image</span> <span class="p">{</span>
+
+    <span class="cd">/**
+     * Get the global size if none is passed as argument
+     *
+     * Don't forget to vendor:publish
+     * @return int
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getGlobalSize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$size</span> <span class="o">=</span> <span class="nc">Config</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'jejje.gravatar.config.default_gravatar_size'</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$size</span><span class="p">;</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>Here we’re making use of our configuration file we made in the previous article, we only have one setting and it’s the <em>default_gravatar_size</em> which we set to <em>100</em> if we do not supply and override it as a second argument.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cd">/**
+     * Method to reuse the Gravatar image url
+     *
+     * @param $id
+     * @param $size
+     * @return string
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="n">gravatarImage</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$size</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">"http://www.gravatar.com/avatar/</span><span class="nv">$id</span><span class="s2">?s=</span><span class="nv">$size</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Method to reuse Gravatar profile url
+     *
+     * @param $id
+     * @return string
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="n">gravatarProfile</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">"http://www.gravatar.com/</span><span class="nv">$id</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>These methods is only used as an part of easy access of the Gravatar url depending if we need the avatar or the profile. These methods are private and is not accessible via the Facade.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cd">/**
+     * This method is used to retrive url to users Gravatar
+     * Will use default size from config file unless size
+     * argument is passed.
+     *
+     * @param $email
+     * @param null $size
+     * @return string
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getImageUrl</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$size</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$size</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="nv">$size</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getGlobalSize</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="nv">$gravatar_hash</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getHash</span><span class="p">(</span><span class="nv">$email</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">gravatarImage</span><span class="p">(</span><span class="nv">$gravatar_hash</span><span class="p">,</span> <span class="nv">$size</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is one of the main methods that we would be using, it takes two parameters the email of the user which is required and the optional size argument. As you can see if the none is provided, we’ll fetch it from our <strong>getGlobalSize()</strong> which get it from the config file. But wait a minute, there’s one method used here that we don’t have – yes, we do not have it just yet, we’ll get there.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cd">/**
+     * Will return url to requested user Gravatar.
+     *
+     * @param $email
+     * @return string
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getProfileUrl</span><span class="p">(</span><span class="nv">$email</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$gravatar_hash</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getHash</span><span class="p">(</span><span class="nv">$email</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">gravatarProfile</span><span class="p">(</span><span class="nv">$gravatar_hash</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>This just returns the URL of the users profile, no particular magic here, and we could expand this method to actually return a tiny hCard – but it’s out of the scope of this package and tutorial.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cd">/**
+     * Will return a Gravatar image with link
+     * to profile of the requested user.
+     *
+     * @param $email
+     * @param null $size
+     * @return string
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getImageWithLinkToProfile</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$size</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$size</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="nv">$size</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getGlobalSize</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="nv">$gravatar_hash</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getHash</span><span class="p">(</span><span class="nv">$email</span><span class="p">);</span>
+
+        <span class="nv">$image</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">gravatarImage</span><span class="p">(</span><span class="nv">$gravatar_hash</span><span class="p">,</span> <span class="nv">$size</span><span class="p">);</span>
+        <span class="nv">$link</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">gravatarProfile</span><span class="p">(</span><span class="nv">$gravatar_hash</span><span class="p">);</span>
+
+        <span class="nv">$image_with_link</span> <span class="o">=</span> <span class="s2">"&lt;a href='</span><span class="nv">$link</span><span class="s2">'&gt;&lt;img src='</span><span class="nv">$image</span><span class="s2">'&gt;&lt;/a&gt;"</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="nv">$image_with_link</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>This nifty method returns an image of the user with a link to their profile, this method could also get the second argument just as the <strong>getImageUrl</strong> can, but this actually returns the HTML for the image as well.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cd">/**
+     * Returns the hash of an e-mail trimmed
+     * if there was any spaces in the submitted
+     * e-mail.
+     *
+     * @param $email
+     * @return string
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getHash</span><span class="p">(</span><span class="nv">$email</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$gravatar_hash</span> <span class="o">=</span> <span class="nb">md5</span><span class="p">(</span><span class="nb">strtolower</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nv">$email</span><span class="p">)));</span>
+
+        <span class="k">return</span> <span class="nv">$gravatar_hash</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is the last part of our <strong>Image</strong> class, and as I mentioned before, it gets the Hashed version of the users e-mail. We’re not to far from the finish line, of course we could add lots of more features, tests and so much more but I won’t deprive you of that.</p>
+
+<p><a name="prepare-to-publish-our-package"></a></p>
+
+<h2 id="prepare-to-publish-our-package">Prepare to publish our package</h2>
+
+<p>We’ve tried our package out, and it works <em>(hopefully)</em> and we now plan to publish our Laravel 5 package for others to use and enjoy, or even for personal use in our next project! So what more do we need to do? Let’s make a list to make sure we don’t miss anything.</p>
+
+<ol>
+  <li>Update our composer.json with information about our package</li>
+  <li>Add a README.md file</li>
+  <li>Upload it to GitHub</li>
+  <li>Publish it to Packagist</li>
+</ol>
+
+<p><a name="update-the-package-composer-json"></a></p>
+
+<h3 id="update-the-package-composerjson">Update the package composer.json</h3>
+
+<p>Workbench did all of the heavy lifting for us but we need to enter more information if we’re going to publish our Gravatar package.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jejje/gravatar</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">A very simple package to get a Gravatar image or Profile. Made for education purposes for http://jejje.net</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">license</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">MIT</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">homepage</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://jejje.net/php/laravel-5-gravatar-package/</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">authors</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jimmy JejjE Nelsing</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jimmy.nelsing@gmail.com</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">homepage</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://jejje.net</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">role</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">developer</span><span class="dl">"</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="dl">"</span><span class="s2">require</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">php</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&gt;=5.4.0</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">illuminate/support</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5.1.*</span><span class="dl">"</span>
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">require-dev</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">autoload</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">psr-4</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="dl">"</span><span class="s2">Jejje</span><span class="se">\\</span><span class="s2">Gravatar</span><span class="se">\\</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">src/Jejje/Gravatar</span><span class="dl">"</span>
+        <span class="p">}</span>
+
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">minimum-stability</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dev</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I’ve added a description of our little package, license and homepage for our package and not to forget – more information about me, what role and website I have.</p>
+
+<p><a name="create-a-readme-file"></a></p>
+
+<h3 id="create-a-readme-file">Create a README file</h3>
+
+<p>The convention for readme files is to use Markdown, which is a simple way to add html to a readme with <em>markdown</em> syntax. These files has a few requirements, you need to inform people on how to install it and how to use it, and we’ll add this to the root of our package.</p>
+
+<p><a name="upload-to-github"></a></p>
+
+<h3 id="upload-to-github">Upload to Github</h3>
+
+<p>Create your repository at Github, I’ve created it and I called it like our package <strong>Gravatar</strong>.</p>
+
+<p><a href="https://i0.wp.com/jejje.net/wp-content/uploads/2015/07/upload_our_package_to_github.png"><img class="aligncenter size-full wp-image-251" src="https://i0.wp.com/jejje.net/wp-content/uploads/2015/07/upload_our_package_to_github.png?resize=722%2C475" alt="Create our Github repository to upload our package to" srcset="https://i2.wp.com/jejje.net/wp-content/uploads/2015/07/upload_our_package_to_github.png?w=722 722w, https://i1.wp.com/jejje.net/wp-content/uploads/2015/07/upload_our_package_to_github.png?resize=300%2C197 300w" sizes="(max-width: 722px) 100vw, 722px" data-recalc-dims="1" /></a></p>
+
+<p>Time to do a git init, which we usually do at the beginning of our package but since this is such a small package I decided to do it at the same time as I’m writing this article.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+
+git remote add origin https://github.com/jejje/gravatar.git
+
+git add <span class="nb">.</span>
+
+git commit <span class="nt">-m</span> <span class="s2">"First commit"</span>
+
+git push <span class="nt">-u</span> origin master 
+</code></pre></div></div>
+
+<p>If you didn’t encounter any errors, great! I did encounter a few, but a few Google searches fixed that just as usual.</p>
+
+<p><a name="register-on-packagist-and-upload"></a></p>
+
+<h3 id="register-on-packagist-and-upload">Register on Packagist and upload</h3>
+
+<p>If you haven’t already, <a href="https://packagist.org/" target="_blank" rel="nofollow">register on Packagist</a> so that we may upload our fresh package for others to use. When and if you’ve registered it’s simple to add the package, just add the github url for your package.</p>
+
+<p><img class="aligncenter size-full wp-image-252" src="https://i2.wp.com/jejje.net/wp-content/uploads/2015/07/package_at_packagist.png?resize=879%2C389" alt="Our package is now up at packagist for others to use, congratulations!" srcset="https://i1.wp.com/jejje.net/wp-content/uploads/2015/07/package_at_packagist.png?w=879 879w, https://i0.wp.com/jejje.net/wp-content/uploads/2015/07/package_at_packagist.png?resize=300%2C133 300w" sizes="(max-width: 879px) 100vw, 879px" data-recalc-dims="1" /></p>
+
+<p>As you can see on this image, Packagist also suggest that we enable auto update – which is really nice. All you have to do is get the key when clicking the link GitHub Service hook, go into your GitHub settings panel and enter Packagist under the <em>Webhooks &amp; Services</em> tab.</p>
+
+<p><a name="conclusion"></a></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Congratulations, you’ve now made your very own package for Laravel 5 from start to publish. I hope that you’ve learned something new, and will keep on learning and contribute to the PHP community – and if you do, feel free to leave a comment and show me!</p>
+
+<p> </p>
+
+<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
+</div>
+:ET

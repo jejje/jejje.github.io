@@ -1,0 +1,176 @@
+<p>Laravel is where it’s all at right now, there are many different PHP Frameworks out there that you can use to speed up your coding and not needing to reinvent the wheel for every project you make. If we’re following the <strong>DRY</strong> <em>(Don’t Repeat Yourself)</em> principle we can create or use packages for common tasks we use a lot.
+<!--more--></p>
+<h2 id="what-are-we-making">What are we making</h2>
+
+<p>We’re going to make a simple package that will return a user Gravatar or a link to the users profile, with the help of Facades we’ll be able to call it like <em>Gravatar::method()</em>. This is just a simple tutorial to get you started with your own package development.</p>
+
+<h3 id="contents">Contents</h3>
+
+<ol>
+  <li><a href="#create-new-laravel-5-project">Create Laravel Project</a></li>
+  <li><a href="#create-our-gravatar-package">Create our Gravatar package</a></li>
+  <li><a href="#add-facade-and-configuration-file">Add facade and configuration file</a>
+    <ol>
+      <li><a href="#create-our-facade">Create our Facade</a></li>
+      <li><a href="#setup-a-configuration-file">Setup a Configuration file</a></li>
+    </ol>
+  </li>
+</ol>
+
+<p><a href="https://github.com/jejje/gravatar" target="_blank" rel="nofollow">Check out the finished package on GitHub</a></p>
+
+<p><a name="create-new-laravel-5-project"></a></p>
+
+<h2 id="create-new-laravel-5-project">Create new Laravel 5 project</h2>
+
+<p>Let’s begin with a fresh copy of Laravel, I assume you have everything setup like composer and laravel global.</p>
+
+<pre class="highlight" title="Create a new laravel project">laravel new package-tutorial</pre>
+
+<p>When it has finished the installation we need to add our project into our homestead, open it up using <strong>homestead edit</strong>. And add the new project.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">map</span><span class="pi">:</span> <span class="s">package-tutorial.dev</span>
+<span class="na">to</span><span class="pi">:</span> <span class="s">/home/vagrant/Code/package-tutorial/public</span>
+</code></pre></div></div>
+
+<p>When you’ve updated the homestead file you need to re-provision it with <strong>homestead</strong> <strong>provision</strong>, and add the new site into your <strong>hosts</strong> file. Great, now we have a clean install to work with! We will need a package called <strong>workbench</strong>, as I’m writing this you’ll need the <em>dev-master</em> version since it’s the only one updated for Laravel 5.</p>
+
+<pre class="highlight" title="Require workbench with composer">composer require xtwoend/workbench:dev-master --require-dev</pre>
+
+<p>You’ll also need to add it to your Service Providers in <em>app/config/app.php</em>.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Xtwoend\Workbench\WorkbenchServiceProvider</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p>Now we can see a new command if we run <em>php artisan</em> called <strong>workbench</strong>, we can using this create a new package. We’ll need to publish the config file for workbench so that we may setup our author credentials.</p>
+
+<pre class="lang:default decode:true" title="Publish Workbench's config">php artisan vendor:publish</pre>
+
+<p>We can find the config file at <em>app/config/workbench.php</em> and here you’ll enter your name and e-mail.</p>
+
+<p><a name="create-our-gravatar-package"></a></p>
+
+<h2 id="create-our-gravatar-package">Create our Gravatar package</h2>
+
+<p>First off we’ll need to figure out what we’re going to name it, and the convention is to name the <em>vendor</em> as your lastname or site-name. I use <em>jejje</em> as my vendor name and we’re going to call the package <em>gravatar</em>, let’s generate the package with the <strong>workbench</strong> command.</p>
+
+<pre class="lang:default decode:true " title="Create our gravatar package">php artisan workbench jejje/gravatar</pre>
+
+<p>Now we just need to wait for the dependencies to be pulled in, it  won’t take long. When it’s finished you may find your newely generated package in <em>/workbench/jejje/gravatar</em>. You’ll find your package under the <em>src</em> folder, and a Service Provider has been generated called <strong>GravatarServiceProvider.php</strong>. We can now add this to our Service Provider list.</p>
+
+<p><strong>Oh, no!</strong> We’re getting an error message that the class is not found! I had to Google around to figure out why I was getting this error message, and the solution was to add this to the <em>/bootstrap/autoload.php</em>.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+|--------------------------------------------------------------------------
+| Register The Workbench Loaders
+|--------------------------------------------------------------------------
+|
+| The Laravel workbench provides a convenient place to develop packages
+| when working locally. However we will need to load in the Composer
+| auto-load files for the packages so that these can be used here.
+|
+*/</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nb">is_dir</span><span class="p">(</span><span class="nv">$workbench</span> <span class="o">=</span> <span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/../workbench'</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="nc">Xtwoend\Workbench\Starter</span><span class="o">::</span><span class="nf">start</span><span class="p">(</span><span class="nv">$workbench</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><a name="add-facade-and-configuration-file"></a></p>
+
+<h2 id="add-facade-and-configuration-file">Add facade and configuration file</h2>
+
+<p>We’ve now come so far that it is time to start coding and I think we should start with our Facade for easy access to our package methods like this <strong>Gravatar::method()</strong>.</p>
+
+<p><a name="create-our-facade"></a></p>
+
+<h3 id="create-our-facade">Create our Facade</h3>
+
+<p>In our package folder <em>/workbench/jejje/gravatar/src/Jejje/Gravatar/</em> we will add a PHP class that extends the Laravel Facade, we’ll name it Gravatar.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;?</span><span class="n">php</span> <span class="kn">namespace</span> <span class="nn">Jejje\Gravatar</span><span class="p">;</span>
+
+    <span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Facade</span><span class="p">;</span>
+    
+    <span class="kd">class</span> <span class="nc">Gravatar</span> <span class="kd">extends</span> <span class="nc">Facade</span> <span class="p">{</span>
+    
+        <span class="cd">/**
+         * Facade for our Gravatar Package
+         * so that we may use it like
+         * Gravatar::method();
+         *
+         * @return string
+         */</span>
+        <span class="k">protected</span> <span class="k">static</span> <span class="k">function</span> <span class="n">getFacadeAccessor</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">'Jejje\Gravatar\Image'</span><span class="p">;</span>
+        <span class="p">}</span>
+    
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <em>getFacadeAccessor</em> binds the Facade to the PHP Class where all our logic will be stored and we’re going to name it <strong>Image</strong>, and we’ll do this in the next part of this tutorial since it’s going to be a long file with some nice methods. But just before we finish up I’d like to setup a configuration file that we’ll need in the main class.</p>
+
+<p><a name="setup-a-configuration-file"></a></p>
+
+<h3 id="setup-a-configuration-file">Setup a Configuration file</h3>
+
+<p>It’s quite simple to make a configuration file where users can edit settings for our package, we’re not going to have many settings – we’re just doing it to get a light grasp on the concept. In our Gravatar folder create a folder called <em>config</em> and a file within it called <em>config.php</em>.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;?</span><span class="n">php</span>
+    <span class="cm">/* /workbench/jejje/gravatar/src/Jejje/Gravatar/config/config.php */</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">'default_gravatar_size'</span> <span class="o">=&gt;</span> <span class="mi">100</span>
+<span class="p">];</span>
+</code></pre></div></div>
+<p>s
+It’s a simple file that just returns an array as you can see, you can go as nuts as you like with settings and arrays within arrays if you need to. We need to register this in our <strong>GravatarServiceProvider</strong>.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;?</span><span class="n">php</span> <span class="kn">namespace</span> <span class="nn">Jejje\Gravatar</span><span class="p">;</span>
+    <span class="kn">use</span> <span class="nc">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
+
+    <span class="kd">class</span> <span class="nc">GravatarServiceProvider</span> <span class="kd">extends</span> <span class="nc">ServiceProvider</span> <span class="p">{</span>
+
+	<span class="cd">/**
+	 * Indicates if loading of the provider is deferred.
+	 *
+	 * @var bool
+	 */</span>
+	<span class="k">protected</span> <span class="nv">$defer</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+	<span class="cd">/**
+	 * Register the service provider.
+	 *
+	 * @return void
+	 */</span>
+	<span class="k">public</span> <span class="k">function</span> <span class="n">register</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">//</span>
+        <span class="cd">/**
+         * This will publish the config file when you do vendor:publish
+         */</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">publishes</span><span class="p">([</span>
+            <span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/config/config.php'</span> <span class="o">=&gt;</span> 
+            <span class="nf">config_path</span><span class="p">(</span><span class="s1">'jejje/gravatar/config.php'</span><span class="p">),</span>
+        <span class="p">]);</span>
+	<span class="p">}</span>
+
+	<span class="cd">/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */</span>
+	<span class="k">public</span> <span class="k">function</span> <span class="n">provides</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="p">[];</span>
+	<span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>When you have updated your Service Provider you should run <em>vendor:publish</em> so that the configuration file gets saved to your project config folder like this <em>/config/jejje/gravatar/config.php</em>. To finish up run;</p>
+
+<pre class="lang:default decode:true">php artisan vendor:publish</pre>
+
+<p>We’ve made great progress so far and I’ll see you in the next part of this series to add all our logic to make it work, and we’ll also look into how to publish our work.</p>
+

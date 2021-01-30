@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">    
+    <title>How to make a batch file to start your Minecraft Bukkit server</title> 
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="google-site-verification" content="zSRep29ke9RlQZVU7x2nqB8BTjjn5Goam0cGRmWV2TQ" />
+
+    <!-- <link rel="shortcut icon" href="/favicon.ico"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#333333">
+    <meta name="theme-color" content="#333333">
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="canonical" href="http://192.168.0.141:4000/how-to-make-a-batch-file-to-start-your-minecraft-bukkit-server/">
+    <link rel="alternate" type="application/rss+xml" title="JejjE's network Feed" href="http://192.168.0.141:4000/feed.xml">
+</head>
+<body>
+    <nav id="top" class="site-navigation">
+	
+        <div class="inner">
+            <button id="menu-toggle" aria-expanded="false">Menu</button>
+            <div class="nav-menu">
+                <ul class="menu">
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/">Home</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/about/">About</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/java/">Java</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/php/">PHP</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/tags/">Archives</a>
+                  </li>
+                
+                </ul>        
+            </div><!-- .nav-menu -->
+            <!-- <a class="subscribe-button fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">Subscribe</span></a> -->
+        </div><!-- .inner -->
+    </nav><!-- .site-navigation -->
+    <header class="site-header">
+        <div class="inner">
+            <h1 class="site-title"><a class="logo-text" href="/">JejjE's network</a></h1>
+            <!--<p class="site-description">Thoughts, stories and ideas.</p>-->
+			
+			
+			<a href="https://www.youtube.com/channel/UCtdUyyxgJfiVXQDNh0E6Y0Q" class="fa-youtube-play square fill-horizontal"><span class="screen-reader-text">YouTube</span></a>
+			<a href="http://instagram.com/jejjefosho" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+			<a href="https://www.facebook.com/jejje.net/" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+			
+			
+			
+        </div><!-- .inner -->
+    </header>
+    <div class="site-content">
+    <div class="inner">
+        <main class="site-main">
+            <article class="post">
+                <header class="entry-header"> 
+                    <div class="entry-header-wrap">
+                        
+                        <div class="post-thumbnail">
+                            <img src="/images/posts//wp-content/uploads/2015/03/make_a_batch_file_for_bukkit_server.png" alt="How to make a batch file to start your Minecraft Bukkit server">
+                        </div><!-- .post-thumbnail -->
+                        
+                        <h1 class="entry-title">How to make a batch file to start your Minecraft Bukkit server</h1>
+                    </div><!-- .entry-header-wrap -->
+                    <div class="entry-meta">
+                        by <span class="post-author">Jimmy Nelsing</span> on <time class="published" datetime="2015-03-02">March 2, 2015</time>
+                    </div><!-- .entry-meta -->
+                </header><!-- .entry-header -->
+                <div class="entry-content">
+
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-7553949713899949"
+                         data-ad-slot="2685493157"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                    <p>When you’re going to start your local Bukkit server you will need to open up the command prompt, change directory to where your Minecraft server is located and then run a Java command with a few arguments. This is a really tedious process to do every time you need to start it. That’s why we should make a batch file named in the lines of <strong>RUNME.bat</strong> so that we with only one click can launch or server, but how do you make such a batch file? In this short article I’ll show you two great examples on how to make this easy file, it does not require more than two lines of code. To make a new batch file you simply open up notepad and save the file as <strong>name.bat</strong> and it will be a batch executable.
+<!--more--></p>
+<h2>Making a batch file using a predefined Java path</h2>
+
+<p>If you’ve <a href="/set-system-path-variable-in-windows/" title="Set system path variable in Windows">set Java into your System path variables</a>, which I give a walk through of, this will be the easiest batch file since it will not need the path to the Java, and it looks something like this:</p>
+
+<div class="language-posh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span><span class="w"> </span><span class="nt">-Xmx1G</span><span class="w"> </span><span class="nt">-jar</span><span class="w"> </span><span class="nx">craftbukkit.jar</span><span class="w"> </span><span class="nt">-o</span><span class="w"> </span><span class="nx">true</span><span class="w">
+</span><span class="n">PAUSE</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The second flag <strong>-Xmx1G</strong> tells the system to give the Bukkit server 1Gb of RAM but you could also set it like <strong>-Xmx1024M</strong>, I usually give my server 2Gb of my 8Gb I have – but depending on how many plugins and how many players you have it can be a lot lower than that. Try it out and see what fits your needs!</p>
+
+<h2>Making a batch file without defined Java path</h2>
+
+<p>If you’re unsure about how to set your System path variables, or you’ve had troubles doing it this few lines will make your life easier since this batch file will check for what system you are on x32- or x64-bit. And it will then run Java from the appropriate path, I would recommend you to read my guide on <a href="/set-system-path-variable-in-windows/" title="Set system path variable in Windows">how to setting System Variables</a> to make it easier in the future.</p>
+
+<div class="language-posh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">ECHO</span><span class="w"> </span><span class="nx">OFF</span><span class="w">
+</span><span class="kr">IF</span><span class="w"> </span><span class="n">/I</span><span class="w"> </span><span class="s2">"%PROCESSOR_ARCHITECTURE:~-2%"</span><span class="o">==</span><span class="s2">"64"</span><span class="w"> </span><span class="s2">"%ProgramFiles(x86)%\Java\jre7\bin\java.exe"</span><span class="w"> </span><span class="nt">-Xmx1024M</span><span class="w"> </span><span class="nt">-jar</span><span class="w"> </span><span class="s2">"craftbukkit.jar"</span><span class="w">
+</span><span class="kr">IF</span><span class="w"> </span><span class="n">/I</span><span class="w"> </span><span class="s2">"%PROCESSOR_ARCHITECTURE:~-2%"</span><span class="o">==</span><span class="s2">"86"</span><span class="w"> </span><span class="s2">"%ProgramFiles%\Java\jre7\bin\java.exe"</span><span class="w"> </span><span class="nt">-Xmx1024M</span><span class="w"> </span><span class="nt">-jar</span><span class="w"> </span><span class="s2">"craftbukkit.jar"</span><span class="w">
+</span><span class="n">PAUSE</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Hopefully this will help, but as I mentioned two times above – it’s always easier to define the path to Java in your System Variables, because then you may run any type of Java from the command line with ease.</p>
+
+
+                </div><!-- .entry-content -->
+                <footer class="entry-footer">
+                    <div class="share-post">
+                        <span>Share</span>
+                        <a class="fa-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=How%20to%20make%20a%20batch%20file%20to%20start%20your%20Minecraft%20Bukkit%20server&amp;url=http://192.168.0.141:4000/how-to-make-a-batch-file-to-start-your-minecraft-bukkit-server/"><span class="screen-reader-text">Twitter</span></a>
+                        <a class="fa-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://192.168.0.141:4000/how-to-make-a-batch-file-to-start-your-minecraft-bukkit-server/&amp;t=How%20to%20make%20a%20batch%20file%20to%20start%20your%20Minecraft%20Bukkit%20server"><span class="screen-reader-text">Facebook</span></a>
+                        <a class="fa-google-plus" target="_blank" href="http://plus.google.com/share?url=http://192.168.0.141:4000/how-to-make-a-batch-file-to-start-your-minecraft-bukkit-server/"><span class="screen-reader-text">Google+</span></a>
+                    </div><!-- .share-post -->
+                    
+                    <div class="tag-links">
+                        Tags: <a href="/tags/index.html#batch" title="Pages tagged batch" rel="tag">batch</a><a href="/tags/index.html#bukkit" title="Pages tagged bukkit" rel="tag">bukkit</a><a href="/tags/index.html#minecraft" title="Pages tagged minecraft" rel="tag">minecraft</a><a href="/tags/index.html#windows" title="Pages tagged windows" rel="tag">windows</a>
+                    </div>
+                    
+                </footer><!-- .entry-footer -->
+            </article><!-- .post -->
+            <div class="author-box">
+                <div class="author-info">
+                    <div class="author-avatar" style="background-image: url(/images/authorimage.png)"><span class="screen-reader-text">Jimmy Nelsing's Picture</span></div>
+                    <div class="author-details">
+                        <h2 class="author-title">About Jimmy Nelsing</h2>
+                        <p class="author-bio">I'm a computer enthusiast who loves the web and web development, I've used Wordpress for a long time on and off for different web pages for many years. I also like to develop in PHP, especially with Laravel and have also started with Java programming as side projects - testing out Bukkit and Android.</p>
+                        <span class="author-location"><i class="fa-map-marker" aria-hidden="true"></i> </span>
+                        <span class="author-website"><i class="fa-chain" aria-hidden="true"></i> <a href="https://jejje.net/" target="_blank"> https://jejje.net/</a></span>
+                    </div><!-- .author-details -->
+                </div><!-- .author-info -->
+            </div><!-- .author-box -->
+            <nav class="post-navigation">
+                <h2 class="screen-reader-text">Post navigation</h2>
+                
+                <div class="nav-previous">
+                    <div class="nav-inside">
+                        
+                        <a href="/6-minecraft-bukkit-plugins-your-server-cannot-be-without/" class="nav-thumb" style="background-image: url(/images/posts//wp-content/uploads/2015/03/minecraft_bukkit_plugins_you_cant_live_without.png)"></a>
+                        
+                        <div class="nav-before">Previous</div>
+                        <div class="nav-title"><a href="/6-minecraft-bukkit-plugins-your-server-cannot-be-without/">6 Minecraft Bukkit plugins your server cannot be without</a></div>
+                        <div class="nav-date">March 1, 2015</div>
+                    </div><!-- .nav-inside -->
+                </div><!-- .nav-previous -->
+                
+                
+                <div class="nav-next">
+                    <div class="nav-inside">
+                        
+                        <a href="/make-your-own-bmi-calculator-android-app/" class="nav-thumb" style="background-image: url(/images/posts//wp-content/uploads/2015/03/make_your_own_bmi_calculator_android_app.png)"></a>
+                        
+                        <div class="nav-before">Next</div>
+                        <div class="nav-title"><a href="/make-your-own-bmi-calculator-android-app/">Make your own BMI Calculator Android App</a></div>
+                        <div class="nav-date">March 3, 2015</div>
+                    </div><!-- .nav-inside -->
+                </div><!-- .nav-next -->
+                
+            </nav><!-- .post-navigation -->
+            
+                <div class="comments-area">
+    <div class="comments-inner">
+        <h2 class="comments-title">Comments</h2>
+        <div id="disqus_thread"></div>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus</a>.</noscript>
+    </div><!-- .comments-inner -->
+</div><!-- .comments-area -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'jejjesnetwork';
+    var disqus_developer = 0;
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+</script>
+
+            
+        </main><!-- .site-main -->
+        <aside class="sidebar">
+    <!--
+    
+    <section class="widget widget-text">
+        <h2 class="widget-title">About Jimmy Nelsing</h2>
+        <p>I'm a computer enthusiast who loves the web and web development, I've used Wordpress for a long time on and off for different web pages for many years. I also like to develop in PHP, especially with Laravel and have also started with Java programming as side projects - testing out Bukkit and Android.</p>
+    </section><!-- .widget-text -->
+    <!--  -->
+
+    
+
+    
+
+    <section class="widget widget-text">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jejje-jekyll-1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7553949713899949"
+             data-ad-slot="8407705071"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+    <section class="widget widget-recent-posts">
+        <h2 class="widget-title">Latest Posts</h2>
+        <ul class="recent-posts">
+            
+            <li class="recent-item"><a href="/2021-01-30-sync-two-pihole-dns-servers-for-failover">Sync Two PiHole DNS Servers for Failover</a> <span>January 30, 2021</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-30-celebrating-30th-birthday-with-suprise-paintball/">Celebrating 30th Birthday with Suprise Paintball</a> <span>May 30, 2019</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-29-the-most-awesome-vacation-paintball-in-falkoping-part-2/">The Most Awesome Vacation Paintball in Falköping - Part 2</a> <span>May 29, 2019</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-27-paintball-is-more-fun-with-friends/">Paintball is more fun with your friends</a> <span>May 27, 2019</span></li>
+            
+            <li class="recent-item"><a href="/speed-up-your-website-and-move-from-wordpress-to-jekyll/">Speed up your website and move from Wordpress to Jekyll</a> <span>September 16, 2017</span></li>
+            
+        </ul><!-- .recent-posts -->
+    </section><!-- .widget-recent-posts -->
+
+    <!--Create a sorted array of tags-->
+    
+    
+    <section class="widget widget-tags">
+        <h2 class="widget-title">Tags</h2>
+        <div class="tagcloud">
+            
+            <a href="/tags/#DNS">DNS</a>
+            
+            <a href="/tags/#IDE">IDE</a>
+            
+            <a href="/tags/#android">android</a>
+            
+            <a href="/tags/#android+app">android app</a>
+            
+            <a href="/tags/#batch">batch</a>
+            
+            <a href="/tags/#bukkit">bukkit</a>
+            
+            <a href="/tags/#code">code</a>
+            
+            <a href="/tags/#command+line">command line</a>
+            
+            <a href="/tags/#command+prompt">command prompt</a>
+            
+            <a href="/tags/#development">development</a>
+            
+            <a href="/tags/#freelancer">freelancer</a>
+            
+            <a href="/tags/#how-to">how-to</a>
+            
+            <a href="/tags/#java">java</a>
+            
+            <a href="/tags/#jetbrains">jetbrains</a>
+            
+            <a href="/tags/#laravel+5">laravel 5</a>
+            
+            <a href="/tags/#make+money">make money</a>
+            
+            <a href="/tags/#minecraft">minecraft</a>
+            
+            <a href="/tags/#paintball">paintball</a>
+            
+            <a href="/tags/#php">php</a>
+            
+            <a href="/tags/#plugins">plugins</a>
+            
+            <a href="/tags/#security">security</a>
+            
+            <a href="/tags/#shell">shell</a>
+            
+            <a href="/tags/#speedball">speedball</a>
+            
+            <a href="/tags/#spigotmc">spigotmc</a>
+            
+            <a href="/tags/#tutorial">tutorial</a>
+            
+            <a href="/tags/#ubuntu">ubuntu</a>
+            
+            <a href="/tags/#vps">vps</a>
+            
+            <a href="/tags/#website">website</a>
+            
+            <a href="/tags/#windows">windows</a>
+            
+            <a href="/tags/#woodsball">woodsball</a>
+            
+            <a href="/tags/#wordpress">wordpress</a>
+            
+        </div><!-- .tagcloud -->
+    </section><!-- .widget -->
+	
+	<section class="widget widget-text">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jejje-jekyll-1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7553949713899949"
+             data-ad-slot="8407705071"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+</aside><!-- .sidebar -->
+
+    </div><!-- .inner -->
+</div><!-- .site-content -->
+
+    <footer class="site-footer">
+    <div class="inner">
+        <div class="social-links">
+            
+            
+			
+			
+			
+			
+			
+			<a href="https://www.youtube.com/channel/UCtdUyyxgJfiVXQDNh0E6Y0Q" class="fa-youtube-play square fill-horizontal"><span class="screen-reader-text">YouTube</span></a>
+			<a href="http://instagram.com/jejjefosho" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+			<a href="https://www.facebook.com/jejje.net/" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+			
+			
+			
+            
+            
+            <a href="https://github.com/jejje" class="fa-github-alt square fill-horizontal"><span class="screen-reader-text">GitHub</span></a>
+            
+            
+            
+            
+            
+			
+			
+			
+			
+            
+            
+            
+            <a class="fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">RSS</span></a>
+        </div><!-- .social-links -->
+        <div class="site-info">
+            &copy; <a href="/">JejjE's network</a> all rights reserved.
+            <a href="#top" id="top-link" class="fa-chevron-up top-link square fill-horizontal"><span class="screen-reader-text">Back to the top</span></a>
+        </div><!-- .site-info -->
+    </div><!-- .inner -->
+</footer><!-- .site-footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/plugins.js"></script>
+    <script type="text/javascript" src="/js/custom.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-34661859-9"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-34661859-9');
+	</script>
+
+</body>
+</html>

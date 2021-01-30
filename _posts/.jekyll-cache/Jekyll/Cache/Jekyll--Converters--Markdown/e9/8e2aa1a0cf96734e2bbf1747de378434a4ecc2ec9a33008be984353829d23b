@@ -1,0 +1,25 @@
+I"<p>When you’re going to start your local Bukkit server you will need to open up the command prompt, change directory to where your Minecraft server is located and then run a Java command with a few arguments. This is a really tedious process to do every time you need to start it. That’s why we should make a batch file named in the lines of <strong>RUNME.bat</strong> so that we with only one click can launch or server, but how do you make such a batch file? In this short article I’ll show you two great examples on how to make this easy file, it does not require more than two lines of code. To make a new batch file you simply open up notepad and save the file as <strong>name.bat</strong> and it will be a batch executable.
+<!--more--></p>
+<h2 id="making-a-batch-file-using-a-predefined-java-path">Making a batch file using a predefined Java path</h2>
+
+<p>If you’ve <a href="/set-system-path-variable-in-windows/" title="Set system path variable in Windows">set Java into your System path variables</a>, which I give a walk through of, this will be the easiest batch file since it will not need the path to the Java, and it looks something like this:</p>
+
+<div class="language-posh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span><span class="w"> </span><span class="nt">-Xmx1G</span><span class="w"> </span><span class="nt">-jar</span><span class="w"> </span><span class="nx">craftbukkit.jar</span><span class="w"> </span><span class="nt">-o</span><span class="w"> </span><span class="nx">true</span><span class="w">
+</span><span class="n">PAUSE</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The second flag <strong>-Xmx1G</strong> tells the system to give the Bukkit server 1Gb of RAM but you could also set it like <strong>-Xmx1024M</strong>, I usually give my server 2Gb of my 8Gb I have – but depending on how many plugins and how many players you have it can be a lot lower than that. Try it out and see what fits your needs!</p>
+
+<h2 id="making-a-batch-file-without-defined-java-path">Making a batch file without defined Java path</h2>
+
+<p>If you’re unsure about how to set your System path variables, or you’ve had troubles doing it this few lines will make your life easier since this batch file will check for what system you are on x32- or x64-bit. And it will then run Java from the appropriate path, I would recommend you to read my guide on <a href="/set-system-path-variable-in-windows/" title="Set system path variable in Windows">how to setting System Variables</a> to make it easier in the future.</p>
+
+<div class="language-posh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">ECHO</span><span class="w"> </span><span class="nx">OFF</span><span class="w">
+</span><span class="kr">IF</span><span class="w"> </span><span class="n">/I</span><span class="w"> </span><span class="s2">"%PROCESSOR_ARCHITECTURE:~-2%"</span><span class="o">==</span><span class="s2">"64"</span><span class="w"> </span><span class="s2">"%ProgramFiles(x86)%\Java\jre7\bin\java.exe"</span><span class="w"> </span><span class="nt">-Xmx1024M</span><span class="w"> </span><span class="nt">-jar</span><span class="w"> </span><span class="s2">"craftbukkit.jar"</span><span class="w">
+</span><span class="kr">IF</span><span class="w"> </span><span class="n">/I</span><span class="w"> </span><span class="s2">"%PROCESSOR_ARCHITECTURE:~-2%"</span><span class="o">==</span><span class="s2">"86"</span><span class="w"> </span><span class="s2">"%ProgramFiles%\Java\jre7\bin\java.exe"</span><span class="w"> </span><span class="nt">-Xmx1024M</span><span class="w"> </span><span class="nt">-jar</span><span class="w"> </span><span class="s2">"craftbukkit.jar"</span><span class="w">
+</span><span class="n">PAUSE</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Hopefully this will help, but as I mentioned two times above – it’s always easier to define the path to Java in your System Variables, because then you may run any type of Java from the command line with ease.</p>
+
+:ET

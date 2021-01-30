@@ -1,0 +1,49 @@
+I"/<p>Sometimes a change of scenery is really good for you, sometimes it’s even true for your WordPress site. For example you want to move your website from a server located in Germany to one of your servers in the US for better connectivity for the American users. <a href="/vps-self-hosted-at-digital-ocean/">I’m using DigitalOcean as my VPS provider</a> and you have the option to take a snapshot and move the whole server, but in my case this was not what I wished to do, I wanted to move WordPress to a new server setup I just made, so in this tutorial I will walk you through how to backup your file contents and your database and migrate it to the new server, both servers being of the flavor <a href="http://releases.ubuntu.com/14.04/" target="_blank" rel="nofollow">Ubuntu 14.04 LTS</a>.
+<!--more--></p>
+<h2 id="move-wordpress-using-scp">Move WordPress using SCP</h2>
+
+<p>We’re going to use a really neat tool called safe copy which you can use to securely copy files from one server to another. But before we begin we will make sure that everything is setup properly.</p>
+
+<p>We have two servers named <strong>test1.jejje.net</strong> and <strong>test2.jejje.net</strong> and we need SSH access to both of them, let’s say we have a user with the username <strong>jejje</strong> on both servers for convince, and our files are located within our home directory <em>/home/jejje/public_html</em>. Great! Let’s begin by <em>gzipping</em> our folder.</p>
+
+<pre class="lang:default decode:true " title="Pack the public_html to public_html.tar.gz">tar -zcvf public_html.tar.gz /public_html</pre>
+
+<p>Now when we’ve zipped our folder we can securely copy it onto <strong>test2.jejje.net</strong> from our server <strong>test1.jejje.net</strong>. Let’s assume we wish to move the files to the same folder but on the new server using the <strong>SCP</strong> tool that I mentioned.</p>
+
+<pre class="lang:default decode:true" title="Securely copy file from test1.jejje.net to test2.jejje.net">scp public_html.tar.gz jejje@test2.jejje.net:/home/jejje/</pre>
+
+<p>A password prompt will pop up and all you need to do is enter it and wait for the files to transfer, it won’t take long at all depending on the size of your website.</p>
+
+<h2 id="backup-your-wordpress-database">Backup your WordPress database</h2>
+
+<p>For this step we need our MySQL credentials, let’s say they are as following; <strong>jejje</strong> and <strong>password</strong> – and the database we are going to use is named <strong>wordpress</strong>. We will want to save our database into a <em>.sql</em> file and the name doesn’t matter so let’s just call it <strong>dump.sql</strong>, with all of these credentials we can now finally make a backup dump of our wordpress database with all it’s tables.</p>
+
+<pre class="lang:default decode:true ">mysqldump -ujejje -ppassword wordpress &gt; dump.sql</pre>
+
+<p>This command will login to your MySQL account and dump the <strong>wordpress</strong> database into the textbased <strong>dump.sql</strong> file, great! With this file and the WordPress files we’ve already sent over, we’ll soon be up and running on our new server, but first we’ll need to use the <em>SCP</em> command to send it to the new server. It’s pretty much the same as before.</p>
+
+<pre class="lang:default decode:true" title="Transfer the SQL-file to the new server">scp dump.sql jejje@test2.jejje.net:/home/jejje/</pre>
+
+<p>When the magic is done, you can now login into your second server, in our case the <em>test2.jejje.net</em> server.</p>
+
+<h2 id="restore-wordpress-on-the-new-server"> Restore WordPress on the new server</h2>
+
+<p>We now have two files in our <em>/home/jejje/</em> on <em>test2.jejje.net</em>, we have the gzipped file with our WordPress files in it, we need to unpack it to the correct folder.</p>
+
+<pre class="lang:default decode:true" title="Unpack the files">tar -zxvf public_html.tar.gz</pre>
+
+<p>This will now unpack and there are only a few steps left to finish our restore of our WordPress migration, we’re still missing the database and we’ll get to that right now. I am assuming that you already have a database setup on your new server named <strong>wordpress</strong> just as the old one, alongside with a matching MySQL account for convenience_._</p>
+
+<pre class="lang:default decode:true " title="Populate your database from the dump.sql">mysql -ujejje -ppassword wordpress &lt; dump.sql</pre>
+
+<p>If everything has gone as it is supposed to, which it <em>mostly</em> does. You could now change your DNS settings to point to the new server and everything should work just as nothing has happened, we just have to wait for the DNS to propegate <em>(which I do hate, I know I shouldn’t but I do). </em></p>
+
+<h2 id="rounding-up">Rounding up</h2>
+
+<p>This way we’ve done it today is by far the simplest road to travel when we’re working with our own servers. This way prevents the issues that may occur if we had used an FTP and PhpMyAdmin as an example, I myself encountered that the files took ages to transfer on my slow Internet, and the PhpMyAdmin aspect of it often failed because of file upload limits. This was the case when I transfered a clients WordPress blog that had been posting on a dailiy/weekly basis with a ton of plugin data in the database. His <em>dump.sql</em> file was actually more than <strong>one gigabyte</strong>, instead of the regular two to ten megabytes, and that’s when I figured this would be the most painless way to do it – and I highly recommend it.</p>
+
+<p>One thing to mention though is that errors might occur if you decide to change your database name from <strong>wordpress</strong> to <strong>wordpress_blog</strong>, but it’s easier to change the name afterwards. I wish to the best of luck on your future WordPress setups!</p>
+
+<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
+</div>
+:ET

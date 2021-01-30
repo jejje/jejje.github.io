@@ -1,0 +1,13 @@
+I"�<p><a href="https://www.youtube.com/watch?v=mWqSOzW4dmE"><img src="/images/posts/paintball/2019-05-30-celebrating-30th-birthday-with-suprise-paintball.jpg" alt="Bunnys 30th Paintball Birthday Party // A surprise of Paintball // JejjE" /></a></p>
+
+<p>I write this post to solve a problem I had myself with my own home network. I use the very popular PiHole as my home DNS server to remove all ads from my network. It’s great but having only one DNS server is setting up yourself for failure.</p>
+
+<h2 id="raspberry-pi-zero-w">Raspberry Pi Zero W</h2>
+<p>PiHole is very efficient and can be run by almost any Raspberry Pi model you might have. I bought two<a href="https://www.raspberrypi.org/products/raspberry-pi-zero-w/"> Raspberry Pi Zero W </a> which has only 512mb RAM and a single core, but that is enough for a small home network.</p>
+
+<p>Pi Zero W is really cheap, low powered and quiet. It doesn’t have Ethernet but this model of the Pi has Wifi.</p>
+
+<p>With only one PiHole DNS server I had Internet trouble everytime I rebooted the server. As you might know, if DNS fails the whole Internet fails. That’s why it’s good that I bought two!</p>
+
+<p>##</p>
+:ET

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">    
+    <title>Move WordPress to a new VPS</title> 
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="google-site-verification" content="zSRep29ke9RlQZVU7x2nqB8BTjjn5Goam0cGRmWV2TQ" />
+
+    <!-- <link rel="shortcut icon" href="/favicon.ico"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#333333">
+    <meta name="theme-color" content="#333333">
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="canonical" href="http://192.168.0.141:4000/move-wordpress-to-a-new-vps/">
+    <link rel="alternate" type="application/rss+xml" title="JejjE's network Feed" href="http://192.168.0.141:4000/feed.xml">
+</head>
+<body>
+    <nav id="top" class="site-navigation">
+	
+        <div class="inner">
+            <button id="menu-toggle" aria-expanded="false">Menu</button>
+            <div class="nav-menu">
+                <ul class="menu">
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/">Home</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/about/">About</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/java/">Java</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/php/">PHP</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/tags/">Archives</a>
+                  </li>
+                
+                </ul>        
+            </div><!-- .nav-menu -->
+            <!-- <a class="subscribe-button fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">Subscribe</span></a> -->
+        </div><!-- .inner -->
+    </nav><!-- .site-navigation -->
+    <header class="site-header">
+        <div class="inner">
+            <h1 class="site-title"><a class="logo-text" href="/">JejjE's network</a></h1>
+            <!--<p class="site-description">Thoughts, stories and ideas.</p>-->
+			
+			
+			<a href="https://www.youtube.com/channel/UCtdUyyxgJfiVXQDNh0E6Y0Q" class="fa-youtube-play square fill-horizontal"><span class="screen-reader-text">YouTube</span></a>
+			<a href="http://instagram.com/jejjefosho" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+			<a href="https://www.facebook.com/jejje.net/" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+			
+			
+			
+        </div><!-- .inner -->
+    </header>
+    <div class="site-content">
+    <div class="inner">
+        <main class="site-main">
+            <article class="post">
+                <header class="entry-header"> 
+                    <div class="entry-header-wrap">
+                        
+                        <div class="post-thumbnail">
+                            <img src="/images/posts//wp-content/uploads/2015/07/move_your_wordpress_to_a_new_vps_using_command_tools.png" alt="Move WordPress to a new VPS">
+                        </div><!-- .post-thumbnail -->
+                        
+                        <h1 class="entry-title">Move WordPress to a new VPS</h1>
+                    </div><!-- .entry-header-wrap -->
+                    <div class="entry-meta">
+                        by <span class="post-author">Jimmy Nelsing</span> on <time class="published" datetime="2015-07-04">July 4, 2015</time>
+                    </div><!-- .entry-meta -->
+                </header><!-- .entry-header -->
+                <div class="entry-content">
+
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-7553949713899949"
+                         data-ad-slot="2685493157"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                    <p>Sometimes a change of scenery is really good for you, sometimes it’s even true for your WordPress site. For example you want to move your website from a server located in Germany to one of your servers in the US for better connectivity for the American users. <a href="/vps-self-hosted-at-digital-ocean/">I’m using DigitalOcean as my VPS provider</a> and you have the option to take a snapshot and move the whole server, but in my case this was not what I wished to do, I wanted to move WordPress to a new server setup I just made, so in this tutorial I will walk you through how to backup your file contents and your database and migrate it to the new server, both servers being of the flavor <a href="http://releases.ubuntu.com/14.04/" target="_blank" rel="nofollow">Ubuntu 14.04 LTS</a>.
+<!--more--></p>
+<h2>Move WordPress using SCP</h2>
+
+<p>We’re going to use a really neat tool called safe copy which you can use to securely copy files from one server to another. But before we begin we will make sure that everything is setup properly.</p>
+
+<p>We have two servers named <strong>test1.jejje.net</strong> and <strong>test2.jejje.net</strong> and we need SSH access to both of them, let’s say we have a user with the username <strong>jejje</strong> on both servers for convince, and our files are located within our home directory <em>/home/jejje/public_html</em>. Great! Let’s begin by <em>gzipping</em> our folder.</p>
+
+<pre class="lang:default decode:true " title="Pack the public_html to public_html.tar.gz">tar -zcvf public_html.tar.gz /public_html</pre>
+
+<p>Now when we’ve zipped our folder we can securely copy it onto <strong>test2.jejje.net</strong> from our server <strong>test1.jejje.net</strong>. Let’s assume we wish to move the files to the same folder but on the new server using the <strong>SCP</strong> tool that I mentioned.</p>
+
+<pre class="lang:default decode:true" title="Securely copy file from test1.jejje.net to test2.jejje.net">scp public_html.tar.gz jejje@test2.jejje.net:/home/jejje/</pre>
+
+<p>A password prompt will pop up and all you need to do is enter it and wait for the files to transfer, it won’t take long at all depending on the size of your website.</p>
+
+<h2>Backup your WordPress database</h2>
+
+<p>For this step we need our MySQL credentials, let’s say they are as following; <strong>jejje</strong> and <strong>password</strong> – and the database we are going to use is named <strong>wordpress</strong>. We will want to save our database into a <em>.sql</em> file and the name doesn’t matter so let’s just call it <strong>dump.sql</strong>, with all of these credentials we can now finally make a backup dump of our wordpress database with all it’s tables.</p>
+
+<pre class="lang:default decode:true ">mysqldump -ujejje -ppassword wordpress &gt; dump.sql</pre>
+
+<p>This command will login to your MySQL account and dump the <strong>wordpress</strong> database into the textbased <strong>dump.sql</strong> file, great! With this file and the WordPress files we’ve already sent over, we’ll soon be up and running on our new server, but first we’ll need to use the <em>SCP</em> command to send it to the new server. It’s pretty much the same as before.</p>
+
+<pre class="lang:default decode:true" title="Transfer the SQL-file to the new server">scp dump.sql jejje@test2.jejje.net:/home/jejje/</pre>
+
+<p>When the magic is done, you can now login into your second server, in our case the <em>test2.jejje.net</em> server.</p>
+
+<h2> Restore WordPress on the new server</h2>
+
+<p>We now have two files in our <em>/home/jejje/</em> on <em>test2.jejje.net</em>, we have the gzipped file with our WordPress files in it, we need to unpack it to the correct folder.</p>
+
+<pre class="lang:default decode:true" title="Unpack the files">tar -zxvf public_html.tar.gz</pre>
+
+<p>This will now unpack and there are only a few steps left to finish our restore of our WordPress migration, we’re still missing the database and we’ll get to that right now. I am assuming that you already have a database setup on your new server named <strong>wordpress</strong> just as the old one, alongside with a matching MySQL account for convenience_._</p>
+
+<pre class="lang:default decode:true " title="Populate your database from the dump.sql">mysql -ujejje -ppassword wordpress &lt; dump.sql</pre>
+
+<p>If everything has gone as it is supposed to, which it <em>mostly</em> does. You could now change your DNS settings to point to the new server and everything should work just as nothing has happened, we just have to wait for the DNS to propegate <em>(which I do hate, I know I shouldn’t but I do). </em></p>
+
+<h2>Rounding up</h2>
+
+<p>This way we’ve done it today is by far the simplest road to travel when we’re working with our own servers. This way prevents the issues that may occur if we had used an FTP and PhpMyAdmin as an example, I myself encountered that the files took ages to transfer on my slow Internet, and the PhpMyAdmin aspect of it often failed because of file upload limits. This was the case when I transfered a clients WordPress blog that had been posting on a dailiy/weekly basis with a ton of plugin data in the database. His <em>dump.sql</em> file was actually more than <strong>one gigabyte</strong>, instead of the regular two to ten megabytes, and that’s when I figured this would be the most painless way to do it – and I highly recommend it.</p>
+
+<p>One thing to mention though is that errors might occur if you decide to change your database name from <strong>wordpress</strong> to <strong>wordpress_blog</strong>, but it’s easier to change the name afterwards. I wish to the best of luck on your future WordPress setups!</p>
+
+<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both">
+</div>
+
+                </div><!-- .entry-content -->
+                <footer class="entry-footer">
+                    <div class="share-post">
+                        <span>Share</span>
+                        <a class="fa-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Move%20WordPress%20to%20a%20new%20VPS&amp;url=http://192.168.0.141:4000/move-wordpress-to-a-new-vps/"><span class="screen-reader-text">Twitter</span></a>
+                        <a class="fa-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://192.168.0.141:4000/move-wordpress-to-a-new-vps/&amp;t=Move%20WordPress%20to%20a%20new%20VPS"><span class="screen-reader-text">Facebook</span></a>
+                        <a class="fa-google-plus" target="_blank" href="http://plus.google.com/share?url=http://192.168.0.141:4000/move-wordpress-to-a-new-vps/"><span class="screen-reader-text">Google+</span></a>
+                    </div><!-- .share-post -->
+                    
+                    <div class="tag-links">
+                        Tags: <a href="/tags/index.html#command+line" title="Pages tagged command line" rel="tag">command line</a><a href="/tags/index.html#ubuntu" title="Pages tagged ubuntu" rel="tag">ubuntu</a><a href="/tags/index.html#vps" title="Pages tagged vps" rel="tag">vps</a><a href="/tags/index.html#wordpress" title="Pages tagged wordpress" rel="tag">wordpress</a>
+                    </div>
+                    
+                </footer><!-- .entry-footer -->
+            </article><!-- .post -->
+            <div class="author-box">
+                <div class="author-info">
+                    <div class="author-avatar" style="background-image: url(/images/authorimage.png)"><span class="screen-reader-text">Jimmy Nelsing's Picture</span></div>
+                    <div class="author-details">
+                        <h2 class="author-title">About Jimmy Nelsing</h2>
+                        <p class="author-bio">I'm a computer enthusiast who loves the web and web development, I've used Wordpress for a long time on and off for different web pages for many years. I also like to develop in PHP, especially with Laravel and have also started with Java programming as side projects - testing out Bukkit and Android.</p>
+                        <span class="author-location"><i class="fa-map-marker" aria-hidden="true"></i> </span>
+                        <span class="author-website"><i class="fa-chain" aria-hidden="true"></i> <a href="https://jejje.net/" target="_blank"> https://jejje.net/</a></span>
+                    </div><!-- .author-details -->
+                </div><!-- .author-info -->
+            </div><!-- .author-box -->
+            <nav class="post-navigation">
+                <h2 class="screen-reader-text">Post navigation</h2>
+                
+                <div class="nav-previous">
+                    <div class="nav-inside">
+                        
+                        <a href="/sneak-peak-into-windows-10/" class="nav-thumb" style="background-image: url(/images/posts//wp-content/uploads/2015/06/sneak_peak_into_windows_10.png)"></a>
+                        
+                        <div class="nav-before">Previous</div>
+                        <div class="nav-title"><a href="/sneak-peak-into-windows-10/">Sneak peak into Windows 10</a></div>
+                        <div class="nav-date">June 16, 2015</div>
+                    </div><!-- .nav-inside -->
+                </div><!-- .nav-previous -->
+                
+                
+                <div class="nav-next">
+                    <div class="nav-inside">
+                        
+                        <a href="/create-your-own-laravel-5-package-part-1/" class="nav-thumb" style="background-image: url(/images/posts//wp-content/uploads/2015/07/create_your_own_laravel_5_package_pt1.png)"></a>
+                        
+                        <div class="nav-before">Next</div>
+                        <div class="nav-title"><a href="/create-your-own-laravel-5-package-part-1/">Create your own Laravel 5 package &#8211; Part 1</a></div>
+                        <div class="nav-date">July 7, 2015</div>
+                    </div><!-- .nav-inside -->
+                </div><!-- .nav-next -->
+                
+            </nav><!-- .post-navigation -->
+            
+                <div class="comments-area">
+    <div class="comments-inner">
+        <h2 class="comments-title">Comments</h2>
+        <div id="disqus_thread"></div>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus</a>.</noscript>
+    </div><!-- .comments-inner -->
+</div><!-- .comments-area -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'jejjesnetwork';
+    var disqus_developer = 0;
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+</script>
+
+            
+        </main><!-- .site-main -->
+        <aside class="sidebar">
+    <!--
+    
+    <section class="widget widget-text">
+        <h2 class="widget-title">About Jimmy Nelsing</h2>
+        <p>I'm a computer enthusiast who loves the web and web development, I've used Wordpress for a long time on and off for different web pages for many years. I also like to develop in PHP, especially with Laravel and have also started with Java programming as side projects - testing out Bukkit and Android.</p>
+    </section><!-- .widget-text -->
+    <!--  -->
+
+    
+
+    
+
+    <section class="widget widget-text">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jejje-jekyll-1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7553949713899949"
+             data-ad-slot="8407705071"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+    <section class="widget widget-recent-posts">
+        <h2 class="widget-title">Latest Posts</h2>
+        <ul class="recent-posts">
+            
+            <li class="recent-item"><a href="/2021-01-30-sync-two-pihole-dns-servers-for-failover">Sync Two PiHole DNS Servers for Failover</a> <span>January 30, 2021</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-30-celebrating-30th-birthday-with-suprise-paintball/">Celebrating 30th Birthday with Suprise Paintball</a> <span>May 30, 2019</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-29-the-most-awesome-vacation-paintball-in-falkoping-part-2/">The Most Awesome Vacation Paintball in Falköping - Part 2</a> <span>May 29, 2019</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-27-paintball-is-more-fun-with-friends/">Paintball is more fun with your friends</a> <span>May 27, 2019</span></li>
+            
+            <li class="recent-item"><a href="/speed-up-your-website-and-move-from-wordpress-to-jekyll/">Speed up your website and move from Wordpress to Jekyll</a> <span>September 16, 2017</span></li>
+            
+        </ul><!-- .recent-posts -->
+    </section><!-- .widget-recent-posts -->
+
+    <!--Create a sorted array of tags-->
+    
+    
+    <section class="widget widget-tags">
+        <h2 class="widget-title">Tags</h2>
+        <div class="tagcloud">
+            
+            <a href="/tags/#DNS">DNS</a>
+            
+            <a href="/tags/#IDE">IDE</a>
+            
+            <a href="/tags/#android">android</a>
+            
+            <a href="/tags/#android+app">android app</a>
+            
+            <a href="/tags/#batch">batch</a>
+            
+            <a href="/tags/#bukkit">bukkit</a>
+            
+            <a href="/tags/#code">code</a>
+            
+            <a href="/tags/#command+line">command line</a>
+            
+            <a href="/tags/#command+prompt">command prompt</a>
+            
+            <a href="/tags/#development">development</a>
+            
+            <a href="/tags/#freelancer">freelancer</a>
+            
+            <a href="/tags/#how-to">how-to</a>
+            
+            <a href="/tags/#java">java</a>
+            
+            <a href="/tags/#jetbrains">jetbrains</a>
+            
+            <a href="/tags/#laravel+5">laravel 5</a>
+            
+            <a href="/tags/#make+money">make money</a>
+            
+            <a href="/tags/#minecraft">minecraft</a>
+            
+            <a href="/tags/#paintball">paintball</a>
+            
+            <a href="/tags/#php">php</a>
+            
+            <a href="/tags/#plugins">plugins</a>
+            
+            <a href="/tags/#security">security</a>
+            
+            <a href="/tags/#shell">shell</a>
+            
+            <a href="/tags/#speedball">speedball</a>
+            
+            <a href="/tags/#spigotmc">spigotmc</a>
+            
+            <a href="/tags/#tutorial">tutorial</a>
+            
+            <a href="/tags/#ubuntu">ubuntu</a>
+            
+            <a href="/tags/#vps">vps</a>
+            
+            <a href="/tags/#website">website</a>
+            
+            <a href="/tags/#windows">windows</a>
+            
+            <a href="/tags/#woodsball">woodsball</a>
+            
+            <a href="/tags/#wordpress">wordpress</a>
+            
+        </div><!-- .tagcloud -->
+    </section><!-- .widget -->
+	
+	<section class="widget widget-text">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jejje-jekyll-1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7553949713899949"
+             data-ad-slot="8407705071"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+</aside><!-- .sidebar -->
+
+    </div><!-- .inner -->
+</div><!-- .site-content -->
+
+    <footer class="site-footer">
+    <div class="inner">
+        <div class="social-links">
+            
+            
+			
+			
+			
+			
+			
+			<a href="https://www.youtube.com/channel/UCtdUyyxgJfiVXQDNh0E6Y0Q" class="fa-youtube-play square fill-horizontal"><span class="screen-reader-text">YouTube</span></a>
+			<a href="http://instagram.com/jejjefosho" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+			<a href="https://www.facebook.com/jejje.net/" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+			
+			
+			
+            
+            
+            <a href="https://github.com/jejje" class="fa-github-alt square fill-horizontal"><span class="screen-reader-text">GitHub</span></a>
+            
+            
+            
+            
+            
+			
+			
+			
+			
+            
+            
+            
+            <a class="fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">RSS</span></a>
+        </div><!-- .social-links -->
+        <div class="site-info">
+            &copy; <a href="/">JejjE's network</a> all rights reserved.
+            <a href="#top" id="top-link" class="fa-chevron-up top-link square fill-horizontal"><span class="screen-reader-text">Back to the top</span></a>
+        </div><!-- .site-info -->
+    </div><!-- .inner -->
+</footer><!-- .site-footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/plugins.js"></script>
+    <script type="text/javascript" src="/js/custom.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-34661859-9"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-34661859-9');
+	</script>
+
+</body>
+</html>

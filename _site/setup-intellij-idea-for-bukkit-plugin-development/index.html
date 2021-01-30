@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">    
+    <title>Setup IntelliJ IDEA for Bukkit plugin development</title> 
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="google-site-verification" content="zSRep29ke9RlQZVU7x2nqB8BTjjn5Goam0cGRmWV2TQ" />
+
+    <!-- <link rel="shortcut icon" href="/favicon.ico"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#333333">
+    <meta name="theme-color" content="#333333">
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="canonical" href="http://192.168.0.141:4000/setup-intellij-idea-for-bukkit-plugin-development/">
+    <link rel="alternate" type="application/rss+xml" title="JejjE's network Feed" href="http://192.168.0.141:4000/feed.xml">
+</head>
+<body>
+    <nav id="top" class="site-navigation">
+	
+        <div class="inner">
+            <button id="menu-toggle" aria-expanded="false">Menu</button>
+            <div class="nav-menu">
+                <ul class="menu">
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/">Home</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/about/">About</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/java/">Java</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/php/">PHP</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/tags/">Archives</a>
+                  </li>
+                
+                </ul>        
+            </div><!-- .nav-menu -->
+            <!-- <a class="subscribe-button fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">Subscribe</span></a> -->
+        </div><!-- .inner -->
+    </nav><!-- .site-navigation -->
+    <header class="site-header">
+        <div class="inner">
+            <h1 class="site-title"><a class="logo-text" href="/">JejjE's network</a></h1>
+            <!--<p class="site-description">Thoughts, stories and ideas.</p>-->
+			
+			
+			<a href="https://www.youtube.com/channel/UCtdUyyxgJfiVXQDNh0E6Y0Q" class="fa-youtube-play square fill-horizontal"><span class="screen-reader-text">YouTube</span></a>
+			<a href="http://instagram.com/jejjefosho" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+			<a href="https://www.facebook.com/jejje.net/" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+			
+			
+			
+        </div><!-- .inner -->
+    </header>
+    <div class="site-content">
+    <div class="inner">
+        <main class="site-main">
+            <article class="post">
+                <header class="entry-header"> 
+                    <div class="entry-header-wrap">
+                        
+                        <div class="post-thumbnail">
+                            <img src="/images/posts//wp-content/uploads/2015/03/setup_intellij_for_bukkit_plugin_development.png" alt="Setup IntelliJ IDEA for Bukkit plugin development">
+                        </div><!-- .post-thumbnail -->
+                        
+                        <h1 class="entry-title">Setup IntelliJ IDEA for Bukkit plugin development</h1>
+                    </div><!-- .entry-header-wrap -->
+                    <div class="entry-meta">
+                        by <span class="post-author">Jimmy Nelsing</span> on <time class="published" datetime="2015-03-12">March 12, 2015</time>
+                    </div><!-- .entry-meta -->
+                </header><!-- .entry-header -->
+                <div class="entry-content">
+
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-7553949713899949"
+                         data-ad-slot="2685493157"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                    <p>There are a few really good texteditors out on the Internet for developing, and when programming you really need one that you like – since you’re going to stare at it quite a bit. When programming in a language like Java that is Object Oriented a good IDE is a lot help, it’s not a requirement but it sure helps. My favorite IDE for Java development is <strong>IntelliJ IDEA</strong>, there are a few other popular ones out there like Eclipse for example, but I really prefer IntelliJ.
+<!--more--></p>
+<h2>Setup IntelliJ for Bukkit</h2>
+
+<p>It’s a bit different to start up a Bukkit plugin environment if you’re used to Eclipse for example, I’ll do my best to walk you through the process. Begin by making a new <strong>Empty Project</strong>. The project is where you will house all of your Bukkit plugins, or modules as it is called in IntelliJ.</p>
+
+<p><a href="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/new_blank_project.png"><img class="aligncenter size-full wp-image-137" src="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/new_blank_project.png?resize=776%2C731" alt="Make a new blank Project" srcset="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/new_blank_project.png?w=776 776w, https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/new_blank_project.png?resize=300%2C283 300w" sizes="(max-width: 776px) 100vw, 776px" data-recalc-dims="1" /></a></p>
+
+<p>As I briefly mentioned above, projects in IntelliJ is not quite as you’d think they are, they are actually more of the collection of your Plugins. I named my Project <strong>Tutorials</strong>, because in this project I will house all of my Tutorial plugins. Now it’s time to make a new <strong>Module</strong> which what a plugin actually is, a Java module. Click <strong>File &gt; New Module</strong> choose to make a new Java Module. <em>(You could actually choose to make a Maven Module from the beginning, but I’m going to walk you through the long way.)</em> Now it’s time to name our plugin, for this Tutorial I’ve decided to name it <strong>SetupIntellijForBukkit</strong>, quite fitting right?</p>
+
+<p><a href="https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/module_is_plugin.png"><img class="aligncenter size-full wp-image-138" src="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/module_is_plugin.png?resize=772%2C459" alt="module_is_plugin" srcset="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/module_is_plugin.png?w=772 772w, https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/module_is_plugin.png?resize=300%2C178 300w" sizes="(max-width: 772px) 100vw, 772px" data-recalc-dims="1" /></a></p>
+
+<p>Our plugin needs to be within a package, I’m sure you’re familar with this but do not worry if you’re not, and we need to follow a <a title="Naming Java Packages" href="http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html" target="_blank" rel="nofollow">specific naming convention that Java uses</a>, you can use your GitHub or even your e-mail if you do not have your own domain. Most important is to have a unique name in all lower case and the name of your plugin appended at the end. That’s is why I named the package to <strong>net.jejje.java.setupintellijforbukkit</strong>. You create the package by right clicking the <strong>src</strong> folder like the image below indicates.</p>
+
+<p><a href="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/make_our_package.png"><img class="aligncenter size-full wp-image-139" src="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/make_our_package.png?resize=930%2C747" alt="make_our_package" srcset="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/make_our_package.png?w=930 930w, https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/make_our_package.png?resize=300%2C241 300w" sizes="(max-width: 930px) 100vw, 930px" data-recalc-dims="1" /></a></p>
+
+<p>I went a head and made our main class and named it <strong>MyMainClass</strong>, beacuse I like it, and I put it in our newly made package. If we would try to extend this class from Bukkit <em>(JavaPlugin)</em> nothing would happen, we would only get an error like this image shows.</p>
+
+<p><a href="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/cannot_resolve_javaplugin.png"><img class="aligncenter size-full wp-image-148" src="https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/cannot_resolve_javaplugin.png?resize=454%2C182" alt="cannot_resolve_javaplugin" srcset="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/cannot_resolve_javaplugin.png?w=454 454w, https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/cannot_resolve_javaplugin.png?resize=300%2C120 300w" sizes="(max-width: 454px) 100vw, 454px" data-recalc-dims="1" /></a></p>
+
+<p>This is because we haven’t told IntelliJ where or what dependencies we need. We will need Bukkit as our dependency, let’s go a head and add that now. Do that by navigating to <strong>File &gt; Project Structure</strong> or by using the hot key for <strong>Ctrl + Alt + Shift + S</strong> and navigate to the <strong>Modules</strong> and under the <strong>Dependencies</strong> tab click the green <strong>plus sign</strong> and click the <strong>Jars and directories</strong> and then locate your <strong>craftbukkit</strong> file, if you don’t have one yet follow <a href="/how-to-setup-a-minecraft-server-on-windows/" title="How to setup a Minecraft server on Windows">my tutorial on how to setup Bukkit on Windows</a> and when the tutorial is finished you will both have the craftbukkit jar and a testing environment to later test out our plugins on.</p>
+
+<p><a href="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/add_bukkit_jars_as_dependencies.png"><img class="aligncenter size-full wp-image-141" src="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/add_bukkit_jars_as_dependencies.png?resize=865%2C581" alt="add_bukkit_jars_as_dependencies" srcset="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/add_bukkit_jars_as_dependencies.png?w=865 865w, https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/add_bukkit_jars_as_dependencies.png?resize=300%2C202 300w" sizes="(max-width: 865px) 100vw, 865px" data-recalc-dims="1" /></a></p>
+
+<p>Now IntelliJ suggests that we import Bukkit and we can do that by hitting <strong>Alt + Enter</strong> and now we can soon begin our development, as I mentioned before when we created our Module that we would add Maven support, it is now time to do that – and I chose to show you this longer approach so that if you in the future would forget it would be good to know how to add the framework afterwards, and we’ll add this by right clicking our <strong>SetupIntelliJForBukkit</strong> module and clicking <strong>Add Framework Support…</strong> and tick the Maven framework and it will be added.</p>
+
+<p><a href="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/add_framework_support.png"><img class="aligncenter size-full wp-image-144" src="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/add_framework_support.png?resize=523%2C252" alt="add_framework_support" srcset="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/add_framework_support.png?w=523 523w, https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/add_framework_support.png?resize=300%2C145 300w" sizes="(max-width: 523px) 100vw, 523px" data-recalc-dims="1" /></a></p>
+
+<p>Now if we would want to build our plugin, or artifact as it is called – we will need to tell IntelliJ which class is our main class. Remember when we went into the <strong>Project Structure</strong>, let’s go there again and click yourself into <strong>Artifact</strong>, and click the green plus sign and choose <strong>Jar &gt; From module with dependencies</strong>.</p>
+
+<p><a href="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/add_mainclass_path.png"><img class="aligncenter size-full wp-image-146" src="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/add_mainclass_path.png?resize=510%2C344" alt="add_mainclass_path" srcset="https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/add_mainclass_path.png?w=510 510w, https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/add_mainclass_path.png?resize=300%2C202 300w" sizes="(max-width: 510px) 100vw, 510px" data-recalc-dims="1" /></a></p>
+
+<p>Just clicking OK will find your Main class, but you can also try to locate it using the “…” on the Main Class field. Now finally, we can begin our Bukkit development and when it’s time to test our plugin out you will need to build the jar file, as I mentioned our plugin is an Artifact and when we’re going to build it we will navigate to <strong>Build &gt; Build Artifacts…</strong> this will begin the process. So where will this jar file be saved, you might ask, when you where in the <strong>Project Structure</strong> under the <strong>Artifacts</strong> setting there is an input field named <strong>Output Directory</strong>. I usually set this directory to my plugins folder within my developing server, and I would recommend you to do the same.</p>
+
+                </div><!-- .entry-content -->
+                <footer class="entry-footer">
+                    <div class="share-post">
+                        <span>Share</span>
+                        <a class="fa-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Setup%20IntelliJ%20IDEA%20for%20Bukkit%20plugin%20development&amp;url=http://192.168.0.141:4000/setup-intellij-idea-for-bukkit-plugin-development/"><span class="screen-reader-text">Twitter</span></a>
+                        <a class="fa-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://192.168.0.141:4000/setup-intellij-idea-for-bukkit-plugin-development/&amp;t=Setup%20IntelliJ%20IDEA%20for%20Bukkit%20plugin%20development"><span class="screen-reader-text">Facebook</span></a>
+                        <a class="fa-google-plus" target="_blank" href="http://plus.google.com/share?url=http://192.168.0.141:4000/setup-intellij-idea-for-bukkit-plugin-development/"><span class="screen-reader-text">Google+</span></a>
+                    </div><!-- .share-post -->
+                    
+                    <div class="tag-links">
+                        Tags: <a href="/tags/index.html#bukkit" title="Pages tagged bukkit" rel="tag">bukkit</a><a href="/tags/index.html#IDE" title="Pages tagged IDE" rel="tag">IDE</a><a href="/tags/index.html#java" title="Pages tagged java" rel="tag">java</a><a href="/tags/index.html#jetbrains" title="Pages tagged jetbrains" rel="tag">jetbrains</a>
+                    </div>
+                    
+                </footer><!-- .entry-footer -->
+            </article><!-- .post -->
+            <div class="author-box">
+                <div class="author-info">
+                    <div class="author-avatar" style="background-image: url(/images/authorimage.png)"><span class="screen-reader-text">Jimmy Nelsing's Picture</span></div>
+                    <div class="author-details">
+                        <h2 class="author-title">About Jimmy Nelsing</h2>
+                        <p class="author-bio">I'm a computer enthusiast who loves the web and web development, I've used Wordpress for a long time on and off for different web pages for many years. I also like to develop in PHP, especially with Laravel and have also started with Java programming as side projects - testing out Bukkit and Android.</p>
+                        <span class="author-location"><i class="fa-map-marker" aria-hidden="true"></i> </span>
+                        <span class="author-website"><i class="fa-chain" aria-hidden="true"></i> <a href="https://jejje.net/" target="_blank"> https://jejje.net/</a></span>
+                    </div><!-- .author-details -->
+                </div><!-- .author-info -->
+            </div><!-- .author-box -->
+            <nav class="post-navigation">
+                <h2 class="screen-reader-text">Post navigation</h2>
+                
+                <div class="nav-previous">
+                    <div class="nav-inside">
+                        
+                        <a href="/how-to-setup-a-minecraft-server-on-windows/" class="nav-thumb" style="background-image: url(/images/posts//wp-content/uploads/2015/03/setup_a_minecraft_server_on_windows.png)"></a>
+                        
+                        <div class="nav-before">Previous</div>
+                        <div class="nav-title"><a href="/how-to-setup-a-minecraft-server-on-windows/">How to setup a Minecraft server on Windows</a></div>
+                        <div class="nav-date">March 6, 2015</div>
+                    </div><!-- .nav-inside -->
+                </div><!-- .nav-previous -->
+                
+                
+                <div class="nav-next">
+                    <div class="nav-inside">
+                        
+                        <a href="/make-your-wordpress-secure/" class="nav-thumb" style="background-image: url(/images/posts//wp-content/uploads/2015/06/make_wordpress_secure.png)"></a>
+                        
+                        <div class="nav-before">Next</div>
+                        <div class="nav-title"><a href="/make-your-wordpress-secure/">Make your WordPress Secure</a></div>
+                        <div class="nav-date">June 11, 2015</div>
+                    </div><!-- .nav-inside -->
+                </div><!-- .nav-next -->
+                
+            </nav><!-- .post-navigation -->
+            
+                <div class="comments-area">
+    <div class="comments-inner">
+        <h2 class="comments-title">Comments</h2>
+        <div id="disqus_thread"></div>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus</a>.</noscript>
+    </div><!-- .comments-inner -->
+</div><!-- .comments-area -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'jejjesnetwork';
+    var disqus_developer = 0;
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+</script>
+
+            
+        </main><!-- .site-main -->
+        <aside class="sidebar">
+    <!--
+    
+    <section class="widget widget-text">
+        <h2 class="widget-title">About Jimmy Nelsing</h2>
+        <p>I'm a computer enthusiast who loves the web and web development, I've used Wordpress for a long time on and off for different web pages for many years. I also like to develop in PHP, especially with Laravel and have also started with Java programming as side projects - testing out Bukkit and Android.</p>
+    </section><!-- .widget-text -->
+    <!--  -->
+
+    
+
+    
+
+    <section class="widget widget-text">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jejje-jekyll-1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7553949713899949"
+             data-ad-slot="8407705071"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+    <section class="widget widget-recent-posts">
+        <h2 class="widget-title">Latest Posts</h2>
+        <ul class="recent-posts">
+            
+            <li class="recent-item"><a href="/2021-01-30-sync-two-pihole-dns-servers-for-failover">Sync Two PiHole DNS Servers for Failover</a> <span>January 30, 2021</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-30-celebrating-30th-birthday-with-suprise-paintball/">Celebrating 30th Birthday with Suprise Paintball</a> <span>May 30, 2019</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-29-the-most-awesome-vacation-paintball-in-falkoping-part-2/">The Most Awesome Vacation Paintball in Falköping - Part 2</a> <span>May 29, 2019</span></li>
+            
+            <li class="recent-item"><a href="/2019-05-27-paintball-is-more-fun-with-friends/">Paintball is more fun with your friends</a> <span>May 27, 2019</span></li>
+            
+            <li class="recent-item"><a href="/speed-up-your-website-and-move-from-wordpress-to-jekyll/">Speed up your website and move from Wordpress to Jekyll</a> <span>September 16, 2017</span></li>
+            
+        </ul><!-- .recent-posts -->
+    </section><!-- .widget-recent-posts -->
+
+    <!--Create a sorted array of tags-->
+    
+    
+    <section class="widget widget-tags">
+        <h2 class="widget-title">Tags</h2>
+        <div class="tagcloud">
+            
+            <a href="/tags/#DNS">DNS</a>
+            
+            <a href="/tags/#IDE">IDE</a>
+            
+            <a href="/tags/#android">android</a>
+            
+            <a href="/tags/#android+app">android app</a>
+            
+            <a href="/tags/#batch">batch</a>
+            
+            <a href="/tags/#bukkit">bukkit</a>
+            
+            <a href="/tags/#code">code</a>
+            
+            <a href="/tags/#command+line">command line</a>
+            
+            <a href="/tags/#command+prompt">command prompt</a>
+            
+            <a href="/tags/#development">development</a>
+            
+            <a href="/tags/#freelancer">freelancer</a>
+            
+            <a href="/tags/#how-to">how-to</a>
+            
+            <a href="/tags/#java">java</a>
+            
+            <a href="/tags/#jetbrains">jetbrains</a>
+            
+            <a href="/tags/#laravel+5">laravel 5</a>
+            
+            <a href="/tags/#make+money">make money</a>
+            
+            <a href="/tags/#minecraft">minecraft</a>
+            
+            <a href="/tags/#paintball">paintball</a>
+            
+            <a href="/tags/#php">php</a>
+            
+            <a href="/tags/#plugins">plugins</a>
+            
+            <a href="/tags/#security">security</a>
+            
+            <a href="/tags/#shell">shell</a>
+            
+            <a href="/tags/#speedball">speedball</a>
+            
+            <a href="/tags/#spigotmc">spigotmc</a>
+            
+            <a href="/tags/#tutorial">tutorial</a>
+            
+            <a href="/tags/#ubuntu">ubuntu</a>
+            
+            <a href="/tags/#vps">vps</a>
+            
+            <a href="/tags/#website">website</a>
+            
+            <a href="/tags/#windows">windows</a>
+            
+            <a href="/tags/#woodsball">woodsball</a>
+            
+            <a href="/tags/#wordpress">wordpress</a>
+            
+        </div><!-- .tagcloud -->
+    </section><!-- .widget -->
+	
+	<section class="widget widget-text">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jejje-jekyll-1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7553949713899949"
+             data-ad-slot="8407705071"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+</aside><!-- .sidebar -->
+
+    </div><!-- .inner -->
+</div><!-- .site-content -->
+
+    <footer class="site-footer">
+    <div class="inner">
+        <div class="social-links">
+            
+            
+			
+			
+			
+			
+			
+			<a href="https://www.youtube.com/channel/UCtdUyyxgJfiVXQDNh0E6Y0Q" class="fa-youtube-play square fill-horizontal"><span class="screen-reader-text">YouTube</span></a>
+			<a href="http://instagram.com/jejjefosho" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+			<a href="https://www.facebook.com/jejje.net/" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+			
+			
+			
+            
+            
+            <a href="https://github.com/jejje" class="fa-github-alt square fill-horizontal"><span class="screen-reader-text">GitHub</span></a>
+            
+            
+            
+            
+            
+			
+			
+			
+			
+            
+            
+            
+            <a class="fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">RSS</span></a>
+        </div><!-- .social-links -->
+        <div class="site-info">
+            &copy; <a href="/">JejjE's network</a> all rights reserved.
+            <a href="#top" id="top-link" class="fa-chevron-up top-link square fill-horizontal"><span class="screen-reader-text">Back to the top</span></a>
+        </div><!-- .site-info -->
+    </div><!-- .inner -->
+</footer><!-- .site-footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/plugins.js"></script>
+    <script type="text/javascript" src="/js/custom.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-34661859-9"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-34661859-9');
+	</script>
+
+</body>
+</html>

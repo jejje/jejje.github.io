@@ -1,0 +1,305 @@
+<p>The easiest way to learn the basics of Java and Android development is to dive head first into coding, of course you’ll need some basic understanding of Java, or programming in general. In this article I’m going to guide you through making a simple app which can calculate your Body Mass Index. In this tutorial we will use some elements to get you familiar with the absolute basics.
+<!--more--></p>
+<ul>
+  <li><a title="Android refrence on TextView" href="http://developer.android.com/reference/android/widget/TextView.html" target="_blank" rel="nofollow">TextView</a></li>
+  <li><a title="Android refrence on EditText" href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank" rel="nofollow">TextEdit</a></li>
+  <li><a title="Android refrence on Button" href="http://developer.android.com/reference/android/widget/Button.html" target="_blank" rel="nofollow">Button</a></li>
+  <li>ButtonListener</li>
+</ul>
+
+<p>This is a great practice for people who’ve just begun their Android or even Java coding. If you haven’t used <a title="Download Android Studio" href="http://developer.android.com/sdk/index.html" target="_blank" rel="nofollow">Android Studio, which is the IDE I’m using</a>, and I highly recommend it, and it’s pretty easy to get started with.</p>
+
+<h2 id="the-strings-of-your-android-application">The Strings of your Android Application</h2>
+
+<p>A good place to start is to set up the strings we’ll need in our app. When calculating BMI you will need two values from the user, their height and their weight. So we’re going to need two TextView strings, and one string for our button and of course we’ll need the name of the App – lets name it BMI Calculator.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- res/values/strings.xml --&gt;</span>
+<span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"app_name"</span><span class="nt">&gt;</span>BMI Calculator<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"bmi_weight"</span><span class="nt">&gt;</span>Weight in KG:<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"bmi_height"</span><span class="nt">&gt;</span>Height in CM:<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"bmi_calc_button"</span><span class="nt">&gt;</span>Calculate BMI<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div></div>
+
+<h2 id="making-your-app-beautiful-kind-of">Making your app beautiful, kind of</h2>
+
+<p>Lets get our layout design out of our way, it doesn’t have to be to complicated to fit our needs. We’ll just use a simple RelativeLayout, and put everything below each item. I know it’s not fancy, but hey – it’s functional!</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- res/layout/activity_main.xml" --&gt;</span>
+<span class="nt">&lt;RelativeLayout</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">xmlns:tools=</span><span class="s">"http://schemas.android.com/tools"</span> <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+    <span class="na">android:layout_height=</span><span class="s">"match_parent"</span> <span class="na">android:paddingLeft=</span><span class="s">"@dimen/activity_horizontal_margin"</span>
+    <span class="na">android:paddingRight=</span><span class="s">"@dimen/activity_horizontal_margin"</span>
+    <span class="na">android:paddingTop=</span><span class="s">"@dimen/activity_vertical_margin"</span>
+    <span class="na">android:paddingBottom=</span><span class="s">"@dimen/activity_vertical_margin"</span> <span class="na">tools:context=</span><span class="s">".MainActivity"</span>
+    <span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- The app name --&gt;</span>
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:text=</span><span class="s">"@string/app_name"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/textView"</span>
+        <span class="na">android:layout_alignParentTop=</span><span class="s">"true"</span>
+        <span class="na">android:layout_centerHorizontal=</span><span class="s">"true"</span>
+        <span class="na">android:textSize=</span><span class="s">"30sp"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- Height in CM text --&gt;</span>
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:text=</span><span class="s">"@string/bmi_height"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/bmi_height"</span>
+        <span class="na">android:layout_below=</span><span class="s">"@+id/textView"</span>
+        <span class="na">android:layout_alignParentLeft=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentStart=</span><span class="s">"true"</span>
+        <span class="na">android:textSize=</span><span class="s">"20sp"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- Height in CM input --&gt;</span>
+    <span class="nt">&lt;EditText</span>
+        <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:inputType=</span><span class="s">"number"</span>
+        <span class="na">android:ems=</span><span class="s">"10"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/height_input"</span>
+        <span class="na">android:layout_below=</span><span class="s">"@+id/bmi_height"</span>
+        <span class="na">android:layout_alignParentLeft=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentStart=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentRight=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentEnd=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- Weight in KG text --&gt;</span>
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:text=</span><span class="s">"@string/bmi_weight"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/bmi_weight"</span>
+        <span class="na">android:layout_below=</span><span class="s">"@+id/height_input"</span>
+        <span class="na">android:layout_alignParentLeft=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentStart=</span><span class="s">"true"</span>
+        <span class="na">android:textSize=</span><span class="s">"20sp"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- Weight in KG input --&gt;</span>
+    <span class="nt">&lt;EditText</span>
+        <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:inputType=</span><span class="s">"number"</span>
+        <span class="na">android:ems=</span><span class="s">"10"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/weight_input"</span>
+        <span class="na">android:layout_below=</span><span class="s">"@+id/bmi_weight"</span>
+        <span class="na">android:layout_alignParentLeft=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentStart=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentRight=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentEnd=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- Calculate BMI Button --&gt;</span>
+    <span class="nt">&lt;Button</span>
+        <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:text=</span><span class="s">"@string/bmi_calc_button"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/bmi_calc_button"</span>
+        <span class="na">android:layout_below=</span><span class="s">"@+id/weight_input"</span>
+        <span class="na">android:layout_centerHorizontal=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- The TextView that will be updated with the Value --&gt;</span>
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:textAppearance=</span><span class="s">"?android:attr/textAppearanceLarge"</span>
+        <span class="na">android:text=</span><span class="s">"0"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/bmi_result"</span>
+        <span class="na">android:textSize=</span><span class="s">"50sp"</span>
+        <span class="na">android:layout_below=</span><span class="s">"@+id/bmi_calc_button"</span>
+        <span class="na">android:layout_centerHorizontal=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/RelativeLayout&gt;</span>
+</code></pre></div></div>
+
+<p>This is how our Android app looks when rendered, as I said – it’s not the fanciest app you’ve seen but that is for another article, it’s functional and that’s the point of this tutorial. As you can see we have four TextViews, two number EditTexts and one Button, and we’ve made use of our previously made strings for easy editing.</p>
+
+<p><a href="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png"><img class="center aligncenter wp-image-110" src="https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=480%2C853" alt="How our Android app will look" srcset="https://i0.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?w=1080 1080w, https://i1.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=169%2C300 169w, https://i2.wp.com/jejje.net/wp-content/uploads/2015/03/bmi_calculator_layout.png?resize=576%2C1024 576w" sizes="(max-width: 480px) 100vw, 480px" data-recalc-dims="1" /></a></p>
+
+<h2 id="finally-some-java-code">Finally some Java code</h2>
+
+<p>Finally we’re ready to begin with the actual Java coding for our application, are you excited? Good, you should be – coding is fun! We’ll begin by declaring some of our variables we’ll need, and then find the view items by their id.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Find UI elements by ID and save to variable</span>
+<span class="nc">EditText</span> <span class="n">height</span> <span class="o">=</span> <span class="o">(</span><span class="nc">EditText</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">height_input</span><span class="o">);</span>
+<span class="nc">EditText</span> <span class="n">weight</span> <span class="o">=</span> <span class="o">(</span><span class="nc">EditText</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">weight_input</span><span class="o">);</span>
+<span class="nc">TextView</span> <span class="n">bmi_result</span> <span class="o">=</span> <span class="o">(</span><span class="nc">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">bmi_result</span><span class="o">);</span>
+<span class="nc">Button</span> <span class="n">button</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Button</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">bmi_calc_button</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Now we have setup our variables, and we will need to write a Listener for our button, since we only have one button to listen for we can keep it simple and stick everything in our main class. We do need to check for null values though, and we’re going to use Toast to tell the user that they need to enter the missing values.</p>
+
+<h2 id="make-a-send-toast-method">Make a send Toast method</h2>
+
+<p>To make it easy on us we will make a method in our main class below our <strong>onCreate()</strong> method, let’s call it <strong>sendToast()</strong>. Let’s begin with the sendToast() method, preferably this should be put into a separate helpers class but since this is a basic Android app, there is no need for that. First things first, we need context – well Toast needs context, so let’s define that first at the top of our class.</p>
+
+<pre class="lang:java decode:true">// Toast needs context
+final Context context = this;</pre>
+
+<p>I’ve chosen to put this helper method at the bottom of our class, and it takes one String argument, which is the message we’re sending.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/***
+ * This method will send the user a Toast
+ * which is a small black popup that is 
+ * only visible for a few seconds.
+ * 
+ * Our method takes one argument of a
+ * String with the message.
+ * 
+ * @param msg
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendToast</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">// Get the message from our method call</span>
+    <span class="nc">CharSequence</span> <span class="n">text</span> <span class="o">=</span> <span class="n">msg</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">duration</span> <span class="o">=</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">;</span>
+
+    <span class="nc">Toast</span> <span class="n">toast</span> <span class="o">=</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">text</span><span class="o">,</span> <span class="n">duration</span><span class="o">);</span>
+    <span class="n">toast</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Looks neat right? When we’re coding we always need to be thinking and <a title="DRY - Don't Repeat Yourself" href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank" rel="nofollow">following the DRY principles</a>. As I mentioned above, we need to listen to the button click and then check for null values, or else our Android app will crash on launch – let’s do that now in our <strong>onCreate()</strong> method below our variables we set earlier.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Listen for our click event</span>
+<span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// Check for null</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">sendToast</span><span class="o">(</span><span class="s">"You must enter your height!"</span><span class="o">);</span>
+            <span class="c1">// Abort the onClick if null</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">weight</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">sendToast</span><span class="o">(</span><span class="s">"You must enter your weight, sorry!"</span><span class="o">);</span>
+            <span class="c1">// Abort the onClick if null</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="c1">// Passed the null checks, let's do some math!</span>
+
+        <span class="cm">/***
+         * Android is funny this way, but you have
+         * to convert it back and forth from integer/float
+         * to strings, you'll get used to it. 😉
+         */</span>
+        <span class="c1">// Convert height from string to float</span>
+        <span class="kt">float</span> <span class="n">h</span> <span class="o">=</span> <span class="nc">Float</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">height</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+        <span class="kt">float</span> <span class="n">w</span> <span class="o">=</span> <span class="nc">Float</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">weight</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+
+        <span class="cm">/***
+         * Time for math!
+         * BMI is calculated
+         * (weigth in kg / (height in meter * height in meter)
+         * But since we want the user to input in CM, we just
+         * multiply it with 10 000 to get the correct value.
+         */</span>
+        <span class="kt">float</span> <span class="no">BMI</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="o">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">h</span><span class="o">)</span> <span class="o">*</span> <span class="mi">10000</span><span class="o">;</span>
+
+        <span class="c1">// Set the bmi_result view item of the value of our BMI</span>
+        <span class="n">bmi_result</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="no">BMI</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div></div>
+
+<p>Not many lines of code and you’ve made a simple Android app that gets input from the user and then updates the textview from zero to the users BMI. I know that this app needs a lot of refinement, for example if the user enters zero as height or weight the result will be NaN <em>(Not a Number)</em> and more checking is needed, but for this short tutorial it’s overkill. Just below here is our full code of our <strong>MainActivity.java</strong> – everything put together.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">net.jejje.java.bmicalculatortutorial</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.support.v7.app.ActionBarActivity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.View</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.Button</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.EditText</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.TextView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.Toast</span><span class="o">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">ActionBarActivity</span> <span class="o">{</span>
+
+    <span class="c1">// Toast needs context</span>
+    <span class="kd">final</span> <span class="nc">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+        <span class="c1">// Find UI elements by ID and save to variable</span>
+        <span class="kd">final</span> <span class="nc">EditText</span> <span class="n">height</span> <span class="o">=</span> <span class="o">(</span><span class="nc">EditText</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">height_input</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="nc">EditText</span> <span class="n">weight</span> <span class="o">=</span> <span class="o">(</span><span class="nc">EditText</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">weight_input</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="nc">TextView</span> <span class="n">bmi_result</span> <span class="o">=</span> <span class="o">(</span><span class="nc">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">bmi_result</span><span class="o">);</span>
+        <span class="nc">Button</span> <span class="n">button</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Button</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">bmi_calc_button</span><span class="o">);</span>
+
+        <span class="c1">// Listen for our click event</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+
+                <span class="c1">// Check for null</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span>
+                <span class="o">{</span>
+                    <span class="n">sendToast</span><span class="o">(</span><span class="s">"You must enter your height!"</span><span class="o">);</span>
+                    <span class="c1">// Abort the onClick if null</span>
+                    <span class="k">return</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">weight</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span>
+                <span class="o">{</span>
+                    <span class="n">sendToast</span><span class="o">(</span><span class="s">"You must enter your weight, sorry!"</span><span class="o">);</span>
+                    <span class="c1">// Abort the onClick if null</span>
+                    <span class="k">return</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="c1">// Passed the null checks, let's do some math!</span>
+
+                <span class="cm">/***
+                 * Android is funny this way, but you have
+                 * to convert it back and forth from integer/float
+                 * to strings, you'll get used to it. 😉
+                 */</span>
+                <span class="c1">// Convert height from string to float</span>
+                <span class="kt">float</span> <span class="n">h</span> <span class="o">=</span> <span class="nc">Float</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">height</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+                <span class="kt">float</span> <span class="n">w</span> <span class="o">=</span> <span class="nc">Float</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">weight</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+
+                <span class="cm">/***
+                 * Time for math!
+                 * BMI is calculated
+                 * (weigth in kg / (height in meter * height in meter)
+                 * But since we want the user to input in CM, we just
+                 * multiply it with 10 000 to get the correct value.
+                 */</span>
+                <span class="kt">float</span> <span class="no">BMI</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="o">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">h</span><span class="o">)</span> <span class="o">*</span> <span class="mi">10000</span><span class="o">;</span>
+
+                <span class="c1">// Set the bmi_result view item of the value of our BMI</span>
+                <span class="n">bmi_result</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="no">BMI</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+
+    <span class="o">}</span>
+
+    <span class="cm">/***
+     * This method will send the user a Toast
+     * which is a small black popup that is
+     * only visible for a few seconds.
+     *
+     * Our method takes one argument of a
+     * String with the message.
+     *
+     * @param msg
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendToast</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// Get the message from our method call</span>
+        <span class="nc">CharSequence</span> <span class="n">text</span> <span class="o">=</span> <span class="n">msg</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">duration</span> <span class="o">=</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">;</span>
+
+        <span class="nc">Toast</span> <span class="n">toast</span> <span class="o">=</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">text</span><span class="o">,</span> <span class="n">duration</span><span class="o">);</span>
+        <span class="n">toast</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>If you’re not a Copy and paste kind of guy or gal, you can find the code for this Tutorial at my GitHub page, <a href="https://github.com/jejje/android-bmi-calculator-tutorial" target="_blank" rel="nofollow">BMI Calculator Tutorial at GitHub</a>.</p>
+
