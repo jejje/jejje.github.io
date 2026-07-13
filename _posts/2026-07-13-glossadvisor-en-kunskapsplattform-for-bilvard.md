@@ -1,6 +1,6 @@
 ---
 title: GlossAdvisor - A Car Care Knowledge Platform That Actually Explains Why
-date: '2026-07-13 10:00:00'
+date: '2026-07-13 07:00:00'
 author: JejjE
 layout: post
 permalink: "/2026-07-13-glossadvisor-car-care-knowledge-platform"
