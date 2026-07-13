@@ -13,7 +13,7 @@ tags:
 - glossadvisor
 - detailing
 - car wash
-banner_image: "/images/posts/glossadvisor.jpg"
+banner_image: "/glossadvisor.jpg"
 ---
 
 I've been working on a side project that's starting to take shape ,  [GlossAdvisor.com](https://glossadvisor.com). It's a car care knowledge platform aimed at everyday car owners, and I want to share a bit about the idea behind it.
