@@ -15,7 +15,7 @@ tags:
 - oauth
 - affiliate
 - seo
-banner_image: "/glossadvisor-tech.jpg"
+banner_image: "/glossadvisor-tech.png"
 ---
 
 A while ago I wrote about the idea behind [GlossAdvisor](https://glossadvisor.com). This post is the follow-up for the people who are more interested in the how than the what. How it's built, what gave me trouble, and what I'd do differently.
@@ -82,3 +82,9 @@ Working with external APIs taught me to be paranoid about response format variat
 OAuth and email are both areas where the happy path is easy and the edge cases are where you earn your keep. Write out all the states (token expired, account already exists, user is not verified yet) before writing any code.
 
 If you're curious how it's all running, it's live at [GlossAdvisor.com](https://glossadvisor.com). Still building but the foundation starting to feel solid.
+
+## What I'd Do Differently
+
+If I started over, I'd design the affiliate feed integration before writing a single admin route, not after. Prices and stock status turned out to be the load-bearing part of the whole product, and I built the CMS first because it felt like the "real" work. That meant the defensive field-extraction and SKU-matching logic got retrofitted onto a schema that wasn't shaped for it, instead of the other way around. 
+
+I'd tackle email and OAuth earlier rather than treating them as things to bolt on later. I underestimated them going in, so they landed near the end of the build when I was already tired of edge cases, when really they deserved to be one of the first things built and battle-tested.
